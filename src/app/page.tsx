@@ -1,103 +1,106 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em] text-red-500">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+import React from 'react'
+import { cn } from '@/lib/utils'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Form } from '@/components/ui/form'
+import { InputFormField, PasswordFormField } from '@/customComponents/FormFields'
+import ButtonLoading from '@/customComponents/Button'
+import { Button } from '@/components/ui/button'
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+import { useRouter } from 'next/navigation'
+
+
+const loginSchema = z.object({
+  email: z.string().min(1, 'Email or username is required'),
+  password: z.string().min(6, 'Password is required and must be atleast 6 characters')
+})
+
+
+const login = () => {
+    const navigate = useRouter()
+
+    const loginForm = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  })
+
+    return (
+        <div className='loginPage h-screen grid grid-cols-4 w-full'>
+            {/* hero Section */}
+            <div className={cn("heroSection col-span-2 h-full relative px-[60px] flex justify-center", 'bg-[#e6f6fe74]')}>
+
+                <div className="heroContainer mt-28 w-[600px]">
+                    <p className="header text-[40px] font-semibold">
+                        Manage your business smarter with <span className='text-primary'>OneBiz</span>
+                    </p>
+
+                    <p className="font-medium text-[18px] mt-4 text-mediumGrey">
+                        Your all-in-one platform for products, services, and sales. Start growing today.
+                    </p>
+
+                    {/* heroImage */}
+                    <div className="heroImage mt-14">
+                        <img src="/images/loginHero.svg" alt="hero image" className='w-full h-full object-cover' />
+                    </div>
+                </div>
+            </div>
+
+            {/* child views */}
+            <div className='p-4 h-full flex flex-col col-span-2'>
+                {/* logo */}
+                <div className="logo cursor-pointer">
+                    <p className='' >
+                        Logos
+                    </p>
+                </div>
+
+                <div className='flex flex-col justify-center items-center w-[500px] mx-auto h-full'>
+                    <div className="headerSection text-left  w-full">
+                        {/* main header */}
+                        <p className="header ">
+                            Welcome Back to OneBiz
+                        </p>
+
+                        <p className="description mt-2 text-gray-500">
+                            Access your business dashboard in seconds. Log in into your account
+                        </p>
+                    </div>
+                    <Form {...loginForm}>
+                        <form className='w-full flex flex-col gap-3 mt-10'>
+                            <InputFormField form={loginForm} name='email' type='email' label="Email" placeholder='Enter email...'/>
+                            <PasswordFormField form={loginForm} name='password' label="Password" placeholder='Enter password...'/>
+
+                            <ButtonLoading title='Login' onClick={() => navigate.push('/private/dashboard')}/>
+                        </form>
+                        <Button variant="link" className='self-end cursor-pointer'>Forgot Password</Button>
+                    </Form>
+
+
+                    {/* footer */}
+                    <div className="footer mt-4">
+                        <p className="text-sm text-gray-500 ">
+                            By signing in or creating an account, you agree to our{' '}
+                            <a href="/terms" className="text-blue-500 underline">
+                                Terms of Service
+                            </a>{' '}
+                            and{' '}
+                            <a href="/privacy" className="text-blue-500 underline">
+                                Privacy Policy
+                            </a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    )
 }
+
+
+export default login
