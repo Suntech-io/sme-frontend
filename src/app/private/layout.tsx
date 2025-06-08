@@ -21,7 +21,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import {  } from '@radix-ui/react-dropdown-menu';
+import { } from '@radix-ui/react-dropdown-menu';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Bell, DivideCircleIcon } from 'lucide-react';
 
@@ -76,7 +76,7 @@ const PrivateLayout = ({ children }: { children: ReactNode }) => {
                   <DropdownMenu>
                     <DropdownMenuTrigger>
                       <div className='p-2 rounded bg-gray-100 hover:bg-gray-200'>
-                         <Bell size={18}/>
+                        <Bell size={18} />
                       </div>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent avoidCollisions={true} align='end'>
@@ -93,8 +93,10 @@ const PrivateLayout = ({ children }: { children: ReactNode }) => {
             </header>
 
             {/* portal where child routes are mounted */}
-            <div className="flex flex-1 flex-col w-full h-full bg-[#F8F8FB] overflow-y-auto">
-              {children}
+            <div className="flex flex-1 flex-col w-full h-full bg-[#F8F8FB] overflow-y-auto mx-auto ">
+              <div className="outlet maximum-width">
+                {children}
+              </div>
             </div>
           </SidebarInset>
         </SidebarProvider>

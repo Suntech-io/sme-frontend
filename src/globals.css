@@ -203,6 +203,10 @@ button[data-slot="select-trigger"] {
     @apply bg-background text-foreground ;
   }
 
+  .maximum-width {
+    @apply max-w-[1440px] mx-auto;
+  }
+
   input,select {
     @apply h-20 ;
   }
