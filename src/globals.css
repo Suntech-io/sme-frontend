@@ -44,6 +44,9 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-skyBlue: var(--skyBlue);
+  --color-teal: var(--teal);
+  --color-warning: var(--warning);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -63,6 +66,9 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
   --primary: oklch(0.623 0.214 259.815);
+  --skyBlue: oklch(69.20% 0.160 240.38);
+  --teal: oklch(71.05% 0.128 181.60);
+  --warning:oklch(79.77% 0.164 82.71);
   --darkGrey: oklch(0.21 0.006 285.885);
   --mediumGrey: oklch(0.552 0.016 285.938);
   --lightGrey: oklch(0.92 0.004 286.32);
@@ -126,15 +132,6 @@
   --sidebar-ring: oklch(0.488 0.243 264.376);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
 .testr{
   border: 1px solid red;
 }
@@ -179,6 +176,7 @@ body{
   /* font-family: "Merriweather", serif; */
   font-family: "Plus Jakarta Sans", sans-serif;
   font-optical-sizing: auto;
+   font-style: normal;
 }
 
 .subText{
@@ -202,7 +200,7 @@ button[data-slot="select-trigger"] {
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground ;
   }
 
   input,select {
@@ -219,14 +217,5 @@ button[data-slot="select-trigger"] {
 
   .subText{
     @apply text-sm text-gray-500;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }

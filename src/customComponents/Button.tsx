@@ -9,7 +9,8 @@ interface ButtonLoadingProps {
     title: string;
     outline?: boolean;
     disabled?: boolean;
-    icon?: string;
+    leftIcon?: string;
+    rightIcon?: string;
     loading?: boolean;
     onClick?: () => void;
     className?: string;
@@ -21,9 +22,10 @@ interface ButtonLoadingProps {
 
 export default function ButtonLoading({
     title,
-    icon,
+    leftIcon,
+    rightIcon,
     loading = false,
-    variant,
+    variant = 'default',
     outline,
     disabled,
     bgColor,
@@ -32,19 +34,23 @@ export default function ButtonLoading({
     fontSize = "1.375rem",
 }: ButtonLoadingProps) {
     return (
-        <Button disabled={loading} className={cn('flex items-center justify-center gap-2',outline?'bg-transparent text-inherit border border-current hover:bg-accent-foreground/5':'' , className)} onClick={onClick} style={{ backgroundColor: bgColor }} variant={variant || "default"}>
+        <Button disabled={loading} className={cn('flex items-center justify-center gap-2', outline ? 'bg-transparent text-inherit border border-current hover:bg-accent-foreground/5' : '', rightIcon && 'pr-1', className)} onClick={onClick} style={{ backgroundColor: bgColor }} variant={variant || "default"}>
             {/* icon and loading */}
-            {<div className={cn("iconOrLoading", (loading || icon) ? 'block' : 'hidden')}>
+            {<div className={cn("iconOrLoading", (loading || leftIcon) ? 'block' : 'hidden')}>
                 {/* loading */}
                 <Loader2 className={cn("animate-spin", loading ? 'block' : 'hidden')} />
                 {/* icon */}
-                {icon && <div className={cn("icon", loading ? 'hidden' : 'block')}>
-                    <IconifyIcon icon={icon} />
+                {leftIcon && <div className={cn("icon", loading ? 'hidden' : 'block')}>
+                    <IconifyIcon icon={leftIcon} />
                 </div>}
             </div>}
             <p>
                 {title}
             </p>
+
+            {rightIcon && <div className={cn("rightIcon", loading ? 'hidden' : 'block')}>
+                <IconifyIcon icon={rightIcon} className="pr-0" />
+            </div>}
         </Button>
     )
 }

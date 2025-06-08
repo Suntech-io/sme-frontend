@@ -72,13 +72,13 @@ const data = {
       // ],
     },
     {
-      title: "Models",
+      title: "Products/Services Hub",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Users",
-          url: "/private/users",
+          title: "Products",
+          url: "/private/products",
         },
         {
           title: "Explorer",
@@ -91,7 +91,7 @@ const data = {
       ],
     },
     {
-      title: "Documentation",
+      title: "Market Place",
       url: "#",
       icon: BookOpen,
       items: [
@@ -114,7 +114,7 @@ const data = {
       ],
     },
     {
-      title: "Settings",
+      title: "Marketing",
       url: "#",
       icon: Settings2,
       items: [
