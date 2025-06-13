@@ -94,7 +94,7 @@ const PrivateLayout = ({ children }: { children: ReactNode }) => {
 
             {/* portal where child routes are mounted */}
             <div className="flex flex-1 flex-col w-full h-full bg-[#F8F8FB] overflow-y-auto mx-auto ">
-              <div className="outlet maximum-width">
+              <div className="outlet maximum-width w-full h-full">
                 {children}
               </div>
             </div>

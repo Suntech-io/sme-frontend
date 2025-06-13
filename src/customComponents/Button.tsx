@@ -34,14 +34,14 @@ export default function ButtonLoading({
     fontSize = "1.375rem",
 }: ButtonLoadingProps) {
     return (
-        <Button disabled={loading} className={cn('flex items-center justify-center gap-2', outline ? 'bg-transparent text-inherit border border-current hover:bg-accent-foreground/5' : '', rightIcon && 'pr-1', className)} onClick={onClick} style={{ backgroundColor: bgColor }} variant={variant || "default"}>
+        <Button disabled={loading} className={cn('flex items-center justify-center gap-1', outline ? 'bg-transparent text-inherit border border-current hover:bg-accent-foreground/5' : '', className)} onClick={onClick} style={{ backgroundColor: bgColor }} variant={variant || "default"}>
             {/* icon and loading */}
             {<div className={cn("iconOrLoading", (loading || leftIcon) ? 'block' : 'hidden')}>
                 {/* loading */}
                 <Loader2 className={cn("animate-spin", loading ? 'block' : 'hidden')} />
                 {/* icon */}
                 {leftIcon && <div className={cn("icon", loading ? 'hidden' : 'block')}>
-                    <IconifyIcon icon={leftIcon} />
+                    <IconifyIcon icon={leftIcon} className=""/>
                 </div>}
             </div>}
             <p>
@@ -49,7 +49,7 @@ export default function ButtonLoading({
             </p>
 
             {rightIcon && <div className={cn("rightIcon", loading ? 'hidden' : 'block')}>
-                <IconifyIcon icon={rightIcon} className="pr-0" />
+                <IconifyIcon icon={rightIcon} className="" />
             </div>}
         </Button>
     )

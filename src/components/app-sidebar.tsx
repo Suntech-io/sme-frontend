@@ -53,7 +53,7 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "private/dashboard",
+      url: "/private/dashboard",
       icon: SquareTerminal,
       isActive: true,
       // items: [
@@ -77,16 +77,16 @@ const data = {
       icon: Bot,
       items: [
         {
-          title: "Products",
-          url: "/private/products",
+          title: "Product Management",
+          url: "/private/products/list",
         },
         {
-          title: "Explorer",
-          url: "#",
+          title: "Service Management",
+          url: "/private/services/list",
         },
         {
-          title: "Quantum",
-          url: "#",
+          title: "Stock Management",
+          url: "/private/stocks/list",
         },
       ],
     },
