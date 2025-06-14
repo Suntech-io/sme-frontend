@@ -54,13 +54,14 @@ interface DataTableProps<TData, TValue> {
   totalPages: number;
   pageIndex?: number | any;
   pageSize?: number;
-  searchInputPlaceholder?:string;
-  addSearch?:boolean;
-  addFiltering?:boolean;
+  searchInputPlaceholder?: string;
+  addSearch?: boolean;
+  addFiltering?: boolean;
   setPaginationNumber?: (updater: any) => void | any;
-  filterContent?:React.ComponentType<any>
+  filterContent?: React.ComponentType<any>
+  tableInformationContent?: React.ComponentType<any> | React.ReactElement
   // setPageSize?: (pageSize: number) => void;
-  onSearchInput?:(val:string)=>void
+  onSearchInput?: (val: string) => void
 }
 
 export default function DataTable<TData, TValue>({
@@ -80,11 +81,12 @@ export default function DataTable<TData, TValue>({
   pageSize,
   isFetching,
   addFiltering,
-  searchInputPlaceholder='Search...',
+  searchInputPlaceholder = 'Search...',
   addSearch,
   // setPageSize,
   setPaginationNumber,
   filterContent,
+  tableInformationContent,
   onSearchInput,
   isLoading = false,
 }: DataTableProps<TData, TValue>) {
@@ -118,16 +120,25 @@ export default function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md border p-4 bg-white max-w-full overflow-x-auto">
+
+      {/* table content and information */}
+
+      {tableInformationContent &&
+        (typeof tableInformationContent === "function"
+          ? React.createElement(tableInformationContent)
+          : tableInformationContent)}
+
+
       {showHeader && (
         <div className="flex  items-center justify-between mb-5 max-w-full">
           {/* search input */}
           {addSearch && <div className="searchInput flex items-center gap-1">
-          <Input onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{
-            onSearchInput?.(e.target.value)
-          }} className="placeholder:text-xs disabled:bg-gray-300 disabled:border w-[300px]" placeholder={searchInputPlaceholder}/>
-          <Button>
-            Search
-          </Button>
+            <Input onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              onSearchInput?.(e.target.value)
+            }} className="placeholder:text-xs disabled:bg-gray-300 disabled:border w-[300px]" placeholder={searchInputPlaceholder} />
+            <Button>
+              Search
+            </Button>
           </div>}
 
           <div className="flex justify-end flex-wrap-reverse items-center gap-3 grow">
@@ -139,9 +150,9 @@ export default function DataTable<TData, TValue>({
                   className="border-gray-500 flex items-center gap-2"
                 >
                   <p className="text-xs">
-                  Filter
+                    Filter
                   </p>
-                  <IconifyIcon icon="carbon:column"/>
+                  <IconifyIcon icon="carbon:column" />
                 </Button>
               </DropdownMenuTrigger>
               {/* drop down content */}
@@ -162,9 +173,9 @@ export default function DataTable<TData, TValue>({
                   className="border-primary bg-primary/5 flex items-center gap-2"
                 >
                   <p className="text-xs">
-                  Columns
+                    Columns
                   </p>
-                  <IconifyIcon icon="carbon:column"/>
+                  <IconifyIcon icon="carbon:column" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -208,9 +219,9 @@ export default function DataTable<TData, TValue>({
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
                         </TableHead>
                       );
                     })}

@@ -46,13 +46,14 @@
     "react-phone-number-input": "^3.4.12",
     "react-select": "^5.10.1",
     "tailwind-merge": "^3.3.0",
-    "zod": "^3.24.3"
+    "zod": "^3.24.3",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@tauri-apps/cli": "^2.5.0",
-    "@types/node": "^20",
+    "@types/node": "^20.19.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-select": "^5.0.0",
