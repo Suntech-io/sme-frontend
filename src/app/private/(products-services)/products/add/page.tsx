@@ -2,8 +2,18 @@
 
 import { useAppSettingsStore } from '@/app/store/appSettings'
 import IconifyIcon from '@/customComponents/IconifyIcon'
-import React, { useEffect, useLayoutEffect } from 'react'
-import Image from 'next/image'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
@@ -12,6 +22,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from '@/components/ui/form'
 import { InputFormField, TextAreaFormField } from '@/customComponents/FormFields'
 import ButtonLoading from '@/customComponents/Button'
+import { Button } from '@/components/ui/button'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 
 const productSchema = z.object({
   name: z.string().min(1, 'Product name is required'),
@@ -28,6 +41,10 @@ const productSchema = z.object({
     images: z.array(z.any()).min(1).max(3)
   }))
 })
+
+type ProductFormType = z.infer<typeof productSchema>;
+type VariantType = ProductFormType['variants'][number];
+
 const page = () => {
   const { updatenoMaxWidthStatus } = useAppSettingsStore()
 
@@ -48,9 +65,40 @@ const page = () => {
       name: '',
       price: '',
       shortageLimit: '',
-      productImages: []
+      productImages: [],
+      variants: [],
     }
   })
+
+  const [optionField, setoptionField] = useState<Record<string, any>>({})
+
+  const addOption = (option: { name: string; value: string }, variantIdx: number) => {
+  const variants = productForm.getValues('variants') || [];
+  if (!variants[variantIdx]) return;
+
+  const updatedVariants = [...variants];
+  updatedVariants[variantIdx] = {
+    ...updatedVariants[variantIdx],
+    options: [...(updatedVariants[variantIdx].options || []), option],
+  };
+  productForm.setValue('variants', updatedVariants);
+};
+
+  const addVariant = () => {
+    const newVariant: VariantType = {
+      options: [],
+      price: '',
+      quantity: '',
+      images: []
+    }
+    // Get current variants
+    const variants = productForm.getValues('variants') || [];
+    // Add the new variant to the array
+    const updatedVariants = [...variants, newVariant];
+    // Update the form state
+    productForm.setValue('variants', updatedVariants);
+    console.log('variants', productForm.getValues('variants'))
+  };
 
   return (
     <div className='h-full m-o'>
@@ -119,21 +167,68 @@ const page = () => {
                   {/* add other variants */}
                   <section className="variants flex flex-col gap-4 mt-8">
 
-                    <div className="variant bg-gray-50 p-3 flex flex-col gap-2">
-                        {/* variant options options */}
-                        <div className="addOption flex items-center gap-1">
-                          <IconifyIcon icon='formkit:add' className=''/>
-                          <p className="text-sm">Add Option</p>
+                    {/* variant */}
+                    {
+                      productForm.watch('variants')?.map((variant, idx) => (
+                        <div className="variant bg-gray-50 p-3 flex flex-col gap-2 rounded-lg" key={idx}>
+                          {/* variant options options */}
+                          <div className="addOption flex items-center gap-1 ">
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button variant="outline" className='!text-xs'>Add Option</Button>
+                              </DialogTrigger>
+                              <DialogContent className="w-[400px]">
+                                <DialogHeader>
+                                  <DialogTitle>Add Option</DialogTitle>
+                                  <DialogDescription>
+                                    Input the name of the option (eg. size)
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <div className="flex items-center gap-2">
+                                  <div className="grid flex-1 gap-2">
+                                    <Label htmlFor="link" className="sr-only">
+                                      Option Name
+                                    </Label>
+                                    <Input
+                                      onChange={(e) => { setoptionField({ name: e.target.value, value: '' }) }}
+                                    />
+                                  </div>
+                                </div>
+                                <DialogFooter className="sm:justify-start">
+                                  <DialogClose asChild>
+                                    <Button type="button" variant="secondary" onClick={() => { addOption({ name: optionField.name, value: '' }, idx) }}>
+                                      Add Option
+                                    </Button>
+                                  </DialogClose>
+                                </DialogFooter>
+                              </DialogContent>
+                            </Dialog>
+                          </div>
+
+                          <div className="options">
+                            {
+                              variant.options.map((option, optionIdx) => (
+                                <InputFormField key={optionIdx} form={productForm} name={`variants.${idx}.options.${optionIdx}.value`} label={option.name} placeholder='Enter option value...' />
+                              ))
+                            }
+                          </div>
+
+                          {/* price and qty */}
+                          <div className="priceNQty grid grid-cols-2 gap-4">
+                            <InputFormField form={productForm} name='name' label="Price" placeholder='Enter variant price...' />
+                            <InputFormField form={productForm} name='name' label="Quantity" placeholder='Enter variant quantity...' />
+                          </div>
                         </div>
+                      ))
+                    }
 
-                        <InputFormField form={productForm} name='name' label="Product Name" placeholder='Enter product name...' />
-                    </div>
 
-
-                    <div className="addVariantBtn flex items-center gap-4">
-                      {/* icon */}
-                      <IconifyIcon icon='iconoir:plus' className='bg-primary text-white' />
-                      <p>Add {true ? <span>a</span> : <span>another</span>} variant</p>
+                    <div className="addVariantBtn ">
+                      <div onClick={() => { addVariant() }} className="addVariantBtn w-fit flex items-center gap-2 cursor-pointer">
+                        {/* icon */}
+                        <IconifyIcon icon='lucide:plus' className='bg-primary text-white' />
+                        <p>Add {productForm.watch('variants').length ? <span>another</span> : <span>a</span>} variant</p>
+                      </div>
                     </div>
                   </section>
                 </div>
