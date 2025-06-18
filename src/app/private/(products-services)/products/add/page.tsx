@@ -25,6 +25,7 @@ import ButtonLoading from '@/customComponents/Button'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 const productSchema = z.object({
   name: z.string().min(1, 'Product name is required'),
@@ -72,18 +73,20 @@ const page = () => {
 
   const [optionField, setoptionField] = useState<Record<string, any>>({})
 
+  // function to add a new option to a variant
   const addOption = (option: { name: string; value: string }, variantIdx: number) => {
-  const variants = productForm.getValues('variants') || [];
-  if (!variants[variantIdx]) return;
+    const variants = productForm.getValues('variants') || [];
+    if (!variants[variantIdx]) return;
 
-  const updatedVariants = [...variants];
-  updatedVariants[variantIdx] = {
-    ...updatedVariants[variantIdx],
-    options: [...(updatedVariants[variantIdx].options || []), option],
+    const updatedVariants = [...variants];
+    updatedVariants[variantIdx] = {
+      ...updatedVariants[variantIdx],
+      options: [...(updatedVariants[variantIdx].options || []), option],
+    };
+    productForm.setValue('variants', updatedVariants);
   };
-  productForm.setValue('variants', updatedVariants);
-};
 
+  // function to add a new variant to the product
   const addVariant = () => {
     const newVariant: VariantType = {
       options: [],
@@ -100,9 +103,30 @@ const page = () => {
     console.log('variants', productForm.getValues('variants'))
   };
 
+  // function to remove a variant
+  const removeVariant = (variantIdx: number) => {
+    const variants = productForm.getValues('variants') || [];
+    const updatedVariants = variants.filter((_, idx) => idx !== variantIdx);
+    productForm.setValue('variants', updatedVariants);
+  };
+
+  // function to remove an option
+  const removeOption = (variantIdx: number, optionIdx: number) => {
+    const variants = productForm.getValues('variants') || [];
+    if (!variants[variantIdx]) return;
+
+    const updatedOptions = variants[variantIdx].options.filter((_, idx) => idx !== optionIdx);
+    const updatedVariants = [...variants];
+    updatedVariants[variantIdx] = {
+      ...updatedVariants[variantIdx],
+      options: updatedOptions,
+    };
+    productForm.setValue('variants', updatedVariants);
+  };
+
   return (
-    <div className='h-full m-o'>
-      <div className="topBar border-b bg-white px-8 py-6">
+    <div className='h-full min-h-fit m-o pb-10'>
+      <div className="topBar border-b bg-white z-20 px-8 py-6 sticky top-0">
         <div className="barContents mx-auto maximum-width flex items-center gap-6">
           {/* back */}
           <div className="arrowBack size-8 rounded-full bg-lightGrey">
@@ -122,7 +146,7 @@ const page = () => {
           <form className="formContent w-full ">
             <div className="inputsContainer grid gap-10 grid-cols-2 w-full">
               {/* left side */}
-              <div className="leftSide px-4 py-6 border shadow flex flex-col gap-4 rounded">
+              <div className="leftSide px-4 py-6 border shadow flex flex-col gap-4 rounded h-fit sticky top-28">
                 <InputFormField form={productForm} name='name' label="Product Name" placeholder='Enter product name...' />
                 <InputFormField form={productForm} name='category' label="Category" placeholder='Enter product category...' />
                 <TextAreaFormField form={productForm} name='name' label="Product description" placeholder='Enter product description...' />
@@ -170,7 +194,19 @@ const page = () => {
                     {/* variant */}
                     {
                       productForm.watch('variants')?.map((variant, idx) => (
-                        <div className="variant bg-gray-50 p-3 flex flex-col gap-2 rounded-lg" key={idx}>
+                        <div className="variant bg-gray-50 p-3 flex flex-col gap-2 rounded-lg relative" key={idx}>
+                          {/* delete the variant */}
+                          <div className="deleteVariant absolute top-2 right-2">
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <IconifyIcon icon='weui:delete-outlined' className='text-red-600' onClick={() => { removeVariant(idx) }} />
+                              </TooltipTrigger>
+                              <TooltipContent >
+                                <p>Delete variant</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </div>
+
                           {/* variant options options */}
                           <div className="addOption flex items-center gap-1 ">
                             <Dialog>
@@ -205,16 +241,21 @@ const page = () => {
                             </Dialog>
                           </div>
 
-                          <div className="options">
+                          <div className="options grid grid-cols-2 gap-4 border-b py-2">
                             {
                               variant.options.map((option, optionIdx) => (
-                                <InputFormField key={optionIdx} form={productForm} name={`variants.${idx}.options.${optionIdx}.value`} label={option.name} placeholder='Enter option value...' />
+                                <div className="option relative" key={optionIdx}>
+                                  <InputFormField className='max-w-[93%]' form={productForm} name={`variants.${idx}.options.${optionIdx}.value`} label={option.name} placeholder='Enter option value...' />
+                                  <div className="icon absolute right-0 bottom-4 size-5">
+                                    <IconifyIcon icon='line-md:close' className='h-full w-full !text-sm !p-0.5' onClick={() => { removeOption(idx, optionIdx) }} />
+                                  </div>
+                                </div>
                               ))
                             }
                           </div>
 
                           {/* price and qty */}
-                          <div className="priceNQty grid grid-cols-2 gap-4">
+                          <div className="priceNQty grid grid-cols-2 gap-4 mt-4">
                             <InputFormField form={productForm} name='name' label="Price" placeholder='Enter variant price...' />
                             <InputFormField form={productForm} name='name' label="Quantity" placeholder='Enter variant quantity...' />
                           </div>

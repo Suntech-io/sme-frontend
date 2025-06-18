@@ -19,7 +19,7 @@ const loginSchema = z.object({
 })
 
 
-const login = () => {
+const Login = () => {
     const navigate = useRouter()
 
     const loginForm = useForm<z.infer<typeof loginSchema>>({
@@ -103,4 +103,4 @@ const login = () => {
 }
 
 
-export default login
+export default Login
