@@ -17,6 +17,7 @@ interface ButtonLoadingProps {
     bgColor?: string,
     fontSize?: string | number;
     variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null;
+    type?: "reset" | "button" | "submit" | undefined
 }
 
 
@@ -32,9 +33,11 @@ export default function ButtonLoading({
     onClick,
     className,
     fontSize = "1.375rem",
+    type
+
 }: ButtonLoadingProps) {
     return (
-        <Button disabled={loading} className={cn('flex items-center justify-center gap-1', outline ? 'bg-transparent text-inherit border border-current hover:bg-accent-foreground/5' : '', className)} onClick={onClick} style={{ backgroundColor: bgColor }} variant={variant || "default"}>
+        <Button type={type} disabled={loading} className={cn('flex items-center justify-center gap-1', outline ? 'bg-transparent text-inherit border border-current hover:bg-accent-foreground/5' : '', className)} onClick={onClick} style={{ backgroundColor: bgColor }} variant={variant || "default"}>
             {/* icon and loading */}
             {<div className={cn("iconOrLoading", (loading || leftIcon) ? 'block' : 'hidden')}>
                 {/* loading */}

@@ -14,8 +14,8 @@ import { useRouter } from 'next/navigation'
 
 
 const loginSchema = z.object({
-  email: z.string().min(1, 'Email or username is required'),
-  password: z.string().min(6, 'Password is required and must be atleast 6 characters')
+    email: z.string().min(1, 'Email or username is required'),
+    password: z.string().min(6, 'Password is required and must be atleast 6 characters')
 })
 
 
@@ -23,12 +23,17 @@ const Login = () => {
     const navigate = useRouter()
 
     const loginForm = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: '',
-      password: ''
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            email: '',
+            password: ''
+        }
+    })
+
+    const handleLogin = () => {
+        console.log('calling')
+        navigate.push('/private/dashboard')
     }
-  })
 
     return (
         <div className='loginPage h-screen grid grid-cols-4 w-full'>
@@ -72,11 +77,11 @@ const Login = () => {
                         </p>
                     </div>
                     <Form {...loginForm}>
-                        <form className='w-full flex flex-col gap-3 mt-10'>
-                            <InputFormField form={loginForm} name='email' type='email' label="Email" placeholder='Enter email...'/>
-                            <PasswordFormField form={loginForm} name='password' label="Password" placeholder='Enter password...'/>
+                        <form className='w-full flex flex-col gap-3 mt-10' onSubmit={loginForm.handleSubmit(handleLogin)}>
+                            <InputFormField form={loginForm} name='email' type='email' label="Email" placeholder='Enter email...' />
+                            <PasswordFormField form={loginForm} name='password' label="Password" placeholder='Enter password...' />
 
-                            <ButtonLoading title='Login' onClick={() => navigate.push('/private/dashboard')}/>
+                            <ButtonLoading title='Login' type='submit' />
                         </form>
                         <Button variant="link" className='self-end cursor-pointer'>Forgot Password</Button>
                     </Form>

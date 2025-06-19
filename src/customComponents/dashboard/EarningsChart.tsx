@@ -2,17 +2,17 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import type { ChartData } from "chart.js";
 import {
-
-    Chart as ChartJS,
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    Tooltip,
-    Legend,
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend,
+  Filler, // <-- Import Filler
 } from "chart.js";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
+ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend, Filler); // <-- Register Filler
 
 const data:ChartData<'line'> = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
