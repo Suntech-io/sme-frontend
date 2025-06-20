@@ -39,7 +39,7 @@ const CustomNavTabs = ({ tabs, clicked }: NavTabsProps) => {
                                 ref={(el) => { tabRefs.current[tab] = el; }}
                                 key={idx}
                                 onClick={() => handleTabClick(tab)}
-                                className={`py-2 px-3 text-sm font-medium transition-colors relative z-10 ${activeTab === tab ? "text-blue-600" : "text-gray-500 hover:text-gray-700"
+                                className={`py-2 px-3 text-sm font-medium min-w-fit transition-colors relative z-10 ${activeTab === tab ? "text-blue-600" : "text-gray-500 hover:text-gray-700"
                                     }`}
                             >
                                 {tab}
