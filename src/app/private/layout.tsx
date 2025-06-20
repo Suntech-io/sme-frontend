@@ -1,4 +1,3 @@
-'use client'
 
 import React from 'react'
 import { Geist, Geist_Mono } from "next/font/google";
@@ -26,11 +25,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Bell, DivideCircleIcon } from 'lucide-react';
 import { useAppSettingsStore } from '../store/appSettings';
 import { cn } from '@/lib/utils';
+import PrivateLayoutLocal from '@/customComponents/PrivateLayout';
 
 
 
 const PrivateLayout = ({ children }: { children: ReactNode }) => {
-  const { noMaxWidthStatus } = useAppSettingsStore()
 
   return (
     <html lang="en">
@@ -86,9 +85,11 @@ const PrivateLayout = ({ children }: { children: ReactNode }) => {
 
               {/* portal where child routes are mounted */}
               <div className="flex flex-1 flex-col w-full h-full bg-[#F8F8FB] overflow-y-auto mx-auto overflow-x-hidden">
-                <div className={cn("w-full h-full min-h-fit", !noMaxWidthStatus && 'maximum-width')}>
-                  {children}
-                </div>
+                <PrivateLayoutLocal>
+                  <div className='h-full w-full'>
+                    {children}
+                  </div>
+                </PrivateLayoutLocal>
               </div>
             </SidebarInset>
           </SidebarProvider>
