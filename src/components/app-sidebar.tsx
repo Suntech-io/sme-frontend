@@ -3,13 +3,12 @@
 import * as React from "react"
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
+  HandPlatter,
+  Megaphone,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
+  Store,
+  Settings,
   Settings2,
   SquareTerminal,
 } from "lucide-react"
@@ -74,7 +73,7 @@ const data = {
     {
       title: "Products/Services Hub",
       url: "#",
-      icon: Bot,
+      icon: HandPlatter,
       items: [
         {
           title: "Product Management",
@@ -93,7 +92,7 @@ const data = {
     {
       title: "Market Place",
       url: "#",
-      icon: BookOpen,
+      icon: Store,
       items: [
         {
           title: "Introduction",
@@ -116,7 +115,7 @@ const data = {
     {
       title: "Marketing",
       url: "#",
-      icon: Settings2,
+      icon: Megaphone,
       items: [
         {
           title: "General",
@@ -136,42 +135,29 @@ const data = {
         },
       ],
     },
-  ],
-  projects: [
     {
-      name: "Design Engineering",
+      title: "Settings",
       url: "#",
-      icon: Frame,
+      icon: Settings,
+      items: [
+        {
+          title: "Profile Settings",
+          url: "/private/settings/user-profile",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+      ],
     },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
+
   ],
 
-  Markets: [
-    {
-      title: "De Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      title: "Sa & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      title: "Travelsss",
-      url: "#",
-      icon: Map,
-    },
-  ],
+
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
