@@ -4,9 +4,9 @@ import React from 'react'
 
 const page = () => {
     return (
-        <div className=''>
+        <div className='userProfilePage testr h-full'>
 
-            The user profile page
+            The user profile page 
 
         </div>
     )

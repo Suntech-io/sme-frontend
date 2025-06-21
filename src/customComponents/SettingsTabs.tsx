@@ -3,45 +3,35 @@
 import React from 'react'
 import CustomNavTabs from './CustomNavTabs'
 import { useRouter } from 'next/navigation'
+import CustomLinkTabs from './CustomLinkTabs'
+import { ILinkTab } from './CustomLinkTabs'
 
-type ISettingsPages = 'User Profile' | 'Business Settings' | 'Store Configuration' | 'User Management' | 'Notifications'
+type ISettingsTitle = 'User Profile' | 'Business Settings' | 'Store Configuration' | 'User Management' | 'Notifications'
+type ISettingsLink = '/private/settings/user-profile' | '/private/settings/business-settings' | '/private/settings/store-configuration' |
+    '/private/settings/user-management' | '/private/settings/notifications'
 
-const settingsPages: ISettingsPages[] = [
-    'User Profile',
-    'Business Settings',
-    'Store Configuration',
-    'User Management',
-    'Notifications'
+
+
+const settingsPages: ILinkTab<{ title: ISettingsTitle, link: ISettingsLink }>[] = [
+    { title: 'User Profile', link: '/private/settings/user-profile' },
+    { title: 'Business Settings', link: '/private/settings/business-settings' },
+    { title: 'Store Configuration', link: '/private/settings/store-configuration' },
+    { title: 'User Management', link: '/private/settings/user-management' },
+    { title: 'Notifications', link: '/private/settings/notifications' }
 ]
 
 const SettingsTabs = () => {
     const router = useRouter()
 
-    const handleTabClicked = (value: string) => {
-        switch (value as ISettingsPages) {
-            case 'User Profile':
-                router.push('/private/settings/user-profile')
-                break;
-            case 'Business Settings':
-                router.push('/private/settings/business-settings')
-                break;
-            case 'Store Configuration':
-                router.push('/private/settings/store-configuration')
-                break;
-            case 'User Management':
-                router.push('/private/settings/user-management')
-                break;
-            case 'Notifications':
-                router.push('/private/settings/notifications')
-                break;
-            default:
-                break;
-        }
+    const handleTabClicked = (value: any) => {
+        console.log('value', value)
     }
 
     return (
         <div>
-            <CustomNavTabs tabs={settingsPages} clicked={handleTabClicked} />
+            <div className="newTabs">
+                <CustomLinkTabs tabs={settingsPages} />
+            </div>
         </div>
     )
 }
