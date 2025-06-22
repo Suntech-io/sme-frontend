@@ -1,0 +1,1 @@
+export const ghanaPhoneRegex = new RegExp(/\+233\d{9}$/); 

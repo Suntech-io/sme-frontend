@@ -71,7 +71,7 @@ export const InputFormField = ({
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>
-          <FormMessage className="text-left" />
+          <FormMessage className="text-left -mt-2" />
         </FormItem>
       )}
     />
@@ -106,7 +106,7 @@ export const TextAreaFormField = ({
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>
-          <FormMessage className="text-left" />
+          <FormMessage className="text-left -mt-2" />
         </FormItem>
       )}
     />
@@ -139,7 +139,7 @@ export const CheckBoxFormField = ({
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>
-          <FormMessage className="text-left" />
+          <FormMessage className="text-left -mt-2" />
         </FormItem>
       )}
     />
@@ -243,7 +243,7 @@ export const PasswordFormField = ({
             </div>
           </FormControl>
           <FormDescription>{description}</FormDescription>
-          <FormMessage className="text-left" />
+          <FormMessage className="text-left -mt-2" />
         </FormItem>
       )}
     />
@@ -312,7 +312,7 @@ export const PhoneNumberFormField = ({
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>
-          <FormMessage className="text-left" />
+          <FormMessage className="text-left -mt-2" />
         </FormItem>
       )}
     />
@@ -358,7 +358,7 @@ export const FormPhoneNumberField = ({
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>
-          <FormMessage className="text-left" />
+          <FormMessage className="text-left -mt-2" />
         </FormItem>
       )}
     />
@@ -593,7 +593,7 @@ export const SwitchFormField = ({
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>
-          <FormMessage className="text-left" />
+          <FormMessage className="text-left -mt-2" />
         </FormItem>
       )}
     />
