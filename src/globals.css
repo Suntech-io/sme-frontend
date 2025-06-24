@@ -194,6 +194,30 @@ button[data-slot="select-trigger"] {
   box-shadow: none; /* Remove the shadow */
 }
 
+/* Globally thin scrollbars for all elements */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b3b3b3 #f5f5f5;
+}
+
+*::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #b3b3b3;
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/10;

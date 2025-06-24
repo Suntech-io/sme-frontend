@@ -36,16 +36,20 @@ const CustomLinkTabs = <T extends { title: any; link: any }>({ tabs, clicked }: 
       };
     }, [])
 
+    // useeffect to update active tab based on pathname
     useEffect(() => {
-        const activeTabElement = tabRefs.current[activeTab.title]
-        if (activeTabElement) {
-            const { offsetLeft, offsetWidth } = activeTabElement
-            setBorderStyle({ left: offsetLeft, width: offsetWidth })
+        const currentTab = tabs.find(tab => tab.link === pathName)
+        if (currentTab) {
+            setActiveTab(currentTab)
+            const activeTabElement = tabRefs.current[currentTab.title]
+            if (activeTabElement) {
+                const { offsetLeft, offsetWidth } = activeTabElement
+                setBorderStyle({ left: offsetLeft, width: offsetWidth })
+            }
         }
-    }, [activeTab])
+    }, [pathName, tabs])
 
     const handleTabClick = (tabKey:ILinkTab) => {
-        setActiveTab(tabKey)
         clicked?.(tabKey)
     }
 
