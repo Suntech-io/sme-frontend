@@ -184,7 +184,7 @@ body{
   font-optical-sizing: auto;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: none; /* Remove the outline */
   box-shadow: none; /* Remove the shadow */
 }

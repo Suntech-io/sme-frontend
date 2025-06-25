@@ -57,22 +57,24 @@ export const InputFormField = ({
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Input
-              placeholder={placeholder}
-              className={`placeholder:text-xs disabled:bg-gray-300 disabled:border ${className}`}
-              disabled={disabled}
-              {...field}
-              type={type}
-              // Spread the inputProps onto the Input component
-              {...inputProps}
-            />
-          </FormControl>
-          <FormDescription>{description}</FormDescription>
-          <FormMessage className="text-left -mt-2" />
-        </FormItem>
+        <div className="">
+          <FormItem>
+            <FormLabel>{label}</FormLabel>
+            <FormControl>
+              <Input
+                placeholder={placeholder}
+                className={`placeholder:text-xs disabled:bg-gray-300 disabled:border ${className}`}
+                disabled={disabled}
+                {...field}
+                type={type}
+                // Spread the inputProps onto the Input component
+                {...inputProps}
+              />
+            </FormControl>
+            <FormDescription>{description}</FormDescription>
+            <FormMessage className="text-left -mt-2" />
+          </FormItem>
+        </div>
       )}
     />
   );
@@ -368,7 +370,8 @@ export const FormPhoneNumberField = ({
 
 // Select Input Form Field ---------------------------------------------------------------
 // Select Input Form Field using the react select library
-import Select from "react-select";
+import ReactSelect from "react-select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { HTMLInputTypeAttribute, useState } from "react";
 import IconifyIcon from "./IconifyIcon";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -397,7 +400,7 @@ interface SelectFormFieldProps {
   placeholder?: string;
 }
 
-export const SelectFormField = ({
+export const ReactSelectFormField = ({
   form,
   name,
   options,
@@ -418,7 +421,7 @@ export const SelectFormField = ({
         <FormItem className={className}>
           <FormLabel className={labelStyle}>{label}</FormLabel>
           <FormControl>
-            <Select
+            <ReactSelect
               options={options}
               name={name}
               isDisabled={disabled}
@@ -428,7 +431,7 @@ export const SelectFormField = ({
               onChange={(e) => onChange(e && e.value)}
               isLoading={isLoading}
               placeholder={placeholder}
-              value={options?.find((c) => c.value === form.watch(name)) || null}
+              value={form.watch(name) ?? undefined}
             />
           </FormControl>
           {showWatchValue && (
@@ -442,6 +445,64 @@ export const SelectFormField = ({
     />
   );
 };
+
+
+//Select Form field from shadcn ------------------------------------------------------------------------------------------------------------------------
+// Select Form Field using the shadcn/ui library
+export const SelectFormField = ({
+  form,
+  name,
+  options,
+  label,
+  showWatchValue = false,
+  className,
+  labelStyle,
+  selectStyle,
+  disabled = false,
+  placeholder,
+}: SelectFormFieldProps) => {
+  return (
+    <div className="">
+      <FormField
+        control={form.control}
+        name={name!}
+        render={({ field }) => (
+          <FormItem className={className}>
+            <FormLabel className={labelStyle}>{label}</FormLabel>
+            <FormControl>
+              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={disabled}>
+                <FormControl>
+                  <SelectTrigger
+                    className={cn(
+                      "w-full placeholder:text-xs disabled:bg-gray-300 disabled:border transition-colors duration-200",
+                      selectStyle
+                    )}
+                  >
+                    <SelectValue placeholder={placeholder || "Select a value"} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {options.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormControl>
+              <FormDescription className="pl-5">
+                {form.watch(name!)}
+              </FormDescription>
+            <FormMessage className="text-left -mt-2" />
+          </FormItem>
+        )}
+      />
+    </div>
+  );
+};
+
+
+
 
 // Date Picker Form Field ---------------------------------------------------------------
 export function DatePickerFormField({
@@ -683,4 +744,3 @@ export const ComboboxFormField = ({
     />
   )
 }
-    

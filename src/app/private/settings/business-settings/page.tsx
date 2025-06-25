@@ -4,7 +4,7 @@ import React from 'react'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from '@/components/ui/form'
-import { InputFormField, TextAreaFormField, PhoneNumberFormField } from '@/customComponents/FormFields'
+import { InputFormField, TextAreaFormField, SelectFormField, PhoneNumberFormField } from '@/customComponents/FormFields'
 import ButtonLoading from '@/customComponents/Button'
 import { ghanaPhoneRegex } from '@/lib/globalConstants'
 import { useForm } from 'react-hook-form'
@@ -72,9 +72,13 @@ const page = () => {
             })} className="grid grid-cols-2 gap-x-10 gap-y-4">
 
               <InputFormField form={businessInfoForm} name="businessName" label="Business Name" placeholder="Enter your business name" />
-              <InputFormField form={businessInfoForm} name="businessType" label="Business Type" placeholder="Enter your business type" />
+              {/* <InputFormField form={businessInfoForm} name="businessType" label="Business Type" placeholder="Enter your business type" /> */}
+              <SelectFormField form={businessInfoForm} name="businessType" label="Business Type" placeholder="Enter your business type" options={[]} className=''/>
+
               <InputFormField form={businessInfoForm} name="registrationNumber" label="Registration Number" placeholder="Enter your registration number" />
-              <InputFormField form={businessInfoForm} name="industry" label="Industry" placeholder="Enter your industry" />
+              {/* <InputFormField form={businessInfoForm} name="industry" label="Industry" placeholder="Enter your industry" />
+               */}
+              <SelectFormField form={businessInfoForm} name="industry" label="Industry" placeholder="Enter your industry" options={[]} />
               <TextAreaFormField form={businessInfoForm} name="businessDescription" label="Business Description" placeholder="Describe your business" />
               {/* business logo selection */}
               <div className="profileImageSelection flex items-center gap-2 mt-4">
