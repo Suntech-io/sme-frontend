@@ -5,11 +5,11 @@ import { persist } from 'zustand/middleware'
 import { TProductViews } from '@/types/generalTypes'
 
 interface IGeneralStore{
-    currentProductView:TProductViews
+    currentProductView:string
 }
 
 interface IGneneralStoreActions{
-    updateCurrentProductView:(view:TProductViews)=>void
+    updateCurrentProductView:(view:string)=>void
 }
 
 export const useGeneralStore = create<IGeneralStore & IGneneralStoreActions>()(

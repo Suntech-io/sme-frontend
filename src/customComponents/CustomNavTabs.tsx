@@ -5,11 +5,12 @@ import React, { useEffect, useRef, useState } from 'react'
 
 interface NavTabsProps {
     tabs: string[],
+    initialTab?: string,
     clicked: (value: string) => void
 }
 
-const CustomNavTabs = ({ tabs, clicked }: NavTabsProps) => {
-    const [activeTab, setActiveTab] = useState(tabs[0])
+const CustomNavTabs = ({ tabs,initialTab, clicked }: NavTabsProps) => {
+    const [activeTab, setActiveTab] = useState(initialTab || tabs[0]) // Set initial active tab to the first tab or the provided initialTab
     const [borderStyle, setBorderStyle] = useState({ left: 0, width: 0 })
     const tabRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
 
@@ -25,6 +26,13 @@ const CustomNavTabs = ({ tabs, clicked }: NavTabsProps) => {
         setActiveTab(tabKey)
         clicked(tabKey)
     }
+
+    // Initialize the border style for the initial active tab
+    useEffect(() => {
+        if (initialTab && tabs.includes(initialTab)) {
+            handleTabClick(initialTab)
+        }
+    }, [initialTab]);
 
 
 
