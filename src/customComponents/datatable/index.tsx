@@ -214,7 +214,7 @@ export default function DataTable<TData, TValue>({
                       return (
                         <TableHead
                           key={header.id}
-                          className="whitespace-nowrap"
+                          className="whitespace-nowrap px-4 "
                         >
                           {header.isPlaceholder
                             ? null
@@ -237,7 +237,7 @@ export default function DataTable<TData, TValue>({
                       data-state={row.getIsSelected() && "selected"}
                     >
                       {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id} className="whitespace-nowrap">
+                        <TableCell key={cell.id} className="whitespace-nowrap px-4">
                           {flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext()

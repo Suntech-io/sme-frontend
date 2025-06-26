@@ -13,6 +13,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import DataTable from '@/customComponents/datatable'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import IconifyIcon from '@/customComponents/IconifyIcon'
+import { cn } from '@/lib/utils'
 
 
 const productConfigurationSchema = z.object({
@@ -104,7 +105,14 @@ const paymentMethodColumns: ColumnDef<any>[] = [
   {
     header: "Status",
     id: "status",
-    accessorKey: "status",
+    cell: ({ row }: any) => (
+      <div className="w-[120px]">
+        <div className={cn("status flex items-center gap-1 rounded-lg",row.original?.status === 'Active' ? 'bg-[#3E875E] text-white' : 'bg-lightGrey')}>
+          <IconifyIcon fontSize={16} icon={row.original?.status === 'Active' ?'ic:round-check-circle':'mynaui:badge'} className={cn(row.original?.status === 'Active' ? 'text-white' : 'bg-lightGrey')} />
+          <p>{row.original?.status}</p>
+        </div>
+      </div>
+    ),
   },
   {
     header: "Actions",
