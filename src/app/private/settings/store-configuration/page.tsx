@@ -5,7 +5,7 @@ import React from 'react'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from '@/components/ui/form'
-import { InputFormField, PasswordFormField, PhoneNumberFormField } from '@/customComponents/FormFields'
+import { InputFormField, SwitchFormField } from '@/customComponents/FormFields'
 import ButtonLoading from '@/customComponents/Button'
 import { ghanaPhoneRegex } from '@/lib/globalConstants'
 import { useForm } from 'react-hook-form'
@@ -52,12 +52,12 @@ const page = () => {
               <div className="inputs grid grid-cols-2 gap-4">
                 <InputFormField form={storeConfigForm} name='defaultCurrency' label="Default Currency" placeholder='Enter default currency...' />
                 <InputFormField form={storeConfigForm} name='defaultShortageLimit' label="Default Shortage Limit" placeholder='Enter default shortage limit...' type='number' />
-                <InputFormField form={storeConfigForm} name='showTaxInclusivePrices' label="Show Tax Inclusive Prices" type='checkbox' />
-                <InputFormField form={storeConfigForm} name='showDiscounts' label="Show Discounts" type='checkbox' />
+                <SwitchFormField form={storeConfigForm} name='showTaxInclusivePrices' label="Show Tax Inclusive Prices" type='checkbox' />
+                <SwitchFormField form={storeConfigForm} name='showDiscounts' label="Show Discounts" type='checkbox' />
               </div>
 
               <div className="submitBtn w-fit mt-auto">
-                <ButtonLoading className='' type='submit' loading={storeConfigForm.formState.isSubmitting} title='Update Settings' />
+                <ButtonLoading className='' type='submit' loading={storeConfigForm.formState.isSubmitting} title='Save changes' />
               </div>
             </form>
           </Form>
@@ -65,7 +65,9 @@ const page = () => {
 
       </section>
 
-      Store config
+      <div className="paymentMethodTable mt-10">
+
+      </div>
     </div>
   )
 }
