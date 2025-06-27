@@ -25,7 +25,7 @@ const EarningsOverviewCard = ({ className }: EarningsOverviewCardProps) => {
 
 
     return (
-        <div className={cn('bg-white p-4 rounded-lg shadow', className)}>
+        <div className={cn('bg-white p-4 rounded-xl shadow', className)}>
             {/* header */}
             <div className="headerSide flex items-center justify-between">
                 <p className="text-base font-semibold">Earnings Overview</p>

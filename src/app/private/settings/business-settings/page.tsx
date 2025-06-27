@@ -55,7 +55,7 @@ const page = () => {
   return (
     <div>
       {/* Business Information */}
-      <div className="businessInformation bg-white rounded-lg border p-6 h-full ">
+      <div className="businessInformation bg-white rounded-xl border p-4 h-full ">
         {/* heading */}
         <div className=''>
           <p className='text-xl font-semibold'>Business Information</p>
@@ -109,7 +109,7 @@ const page = () => {
 
       {/* Contact and Location Details */}
       <div className="businessLocationDetails">
-        <div className="businessAddress bg-white rounded-lg border p-6 h-full mt-5">
+        <div className="businessAddress bg-white rounded-xl border p-4 h-full mt-5">
           {/* heading */}
           <div className=''>
             <p className='text-xl font-semibold'>Contact and Location Details</p>

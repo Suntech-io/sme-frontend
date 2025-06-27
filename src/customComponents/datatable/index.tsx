@@ -119,7 +119,7 @@ export default function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-lg border p-4 bg-white max-w-full overflow-x-auto">
+    <div className="rounded-xl border p-4 bg-white max-w-full overflow-x-auto">
 
       {/* table content and information */}
 

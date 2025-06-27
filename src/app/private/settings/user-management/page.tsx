@@ -104,7 +104,7 @@ const userColumns: ColumnDef<any>[] = [
     id: "status",
     cell: ({ row }: any) => (
       <div className="w-[120px]">
-        <div className={cn("status flex items-center gap-1 rounded-lg", row.original?.status === 'Active' ? 'bg-[#3E875E] text-white' : 'bg-lightGrey')}>
+        <div className={cn("status flex items-center gap-1 rounded-xl", row.original?.status === 'Active' ? 'bg-[#3E875E] text-white' : 'bg-lightGrey')}>
           <IconifyIcon fontSize={16} icon={row.original?.status === 'Active' ? 'ic:round-check-circle' : 'mynaui:badge'} className={cn(row.original?.status === 'Active' ? 'text-white' : 'bg-lightGrey')} />
           <p>{row.original?.status}</p>
         </div>
@@ -129,7 +129,7 @@ const page = () => {
           <p className='text-xl font-semibold'>User Management</p>
           <p className='mt-1 text-mediumGrey text-sm'>Manage details of members of your business</p>
         </div>
-      </div>} columns={userColumns} data={userData} totalPages={1} />
+      </div>} columns={userColumns} data={userData} totalPages={1} addFiltering/>
     </div>
   )
 }

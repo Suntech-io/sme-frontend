@@ -4,7 +4,7 @@ import React from 'react'
 
 const TopCustomers = () => {
   return (
-    <div className='p-4 bg-white rounded-lg shadow'>
+    <div className='p-4 bg-white rounded-xl shadow'>
             {/* header */}
             <div className="headerSide flex items-center justify-between">
                 <p className="text-base font-semibold">Top Customers</p>

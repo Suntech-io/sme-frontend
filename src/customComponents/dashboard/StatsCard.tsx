@@ -13,7 +13,7 @@ interface StatsCardProps {
 
 const StatsCard = ({ growthDirection = 'up', growthPercentage, title, value, icon = 'mdi:dollar' }: StatsCardProps) => {
     return (
-        <div className='bg-white p-4 rounded-lg shadow'>
+        <div className='bg-white p-4 rounded-xl shadow'>
             {/* header */}
             <div className="header flex items-center gap-3">
                 {/* icon */}

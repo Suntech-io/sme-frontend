@@ -107,7 +107,7 @@ const paymentMethodColumns: ColumnDef<any>[] = [
     id: "status",
     cell: ({ row }: any) => (
       <div className="w-[120px]">
-        <div className={cn("status flex items-center gap-1 rounded-lg",row.original?.status === 'Active' ? 'bg-[#3E875E] text-white' : 'bg-lightGrey')}>
+        <div className={cn("status flex items-center gap-1 rounded-xl",row.original?.status === 'Active' ? 'bg-[#3E875E] text-white' : 'bg-lightGrey')}>
           <IconifyIcon fontSize={16} icon={row.original?.status === 'Active' ?'ic:round-check-circle':'mynaui:badge'} className={cn(row.original?.status === 'Active' ? 'text-white' : 'bg-lightGrey')} />
           <p>{row.original?.status}</p>
         </div>
@@ -137,7 +137,7 @@ const page = () => {
 
   return (
     <div className='storeConfigurationPage h-full'>
-      <section className="stockSettings bg-white rounded-lg border p-6">
+      <section className="stockSettings bg-white rounded-xl border p-4">
         {/* heading */}
         <div className=''>
           <p className='text-xl font-semibold'>Product Settings</p>
@@ -157,8 +157,8 @@ const page = () => {
               <div className="inputs grid grid-cols-2 gap-4">
                 <InputFormField form={storeConfigForm} name='defaultCurrency' label="Default Currency" placeholder='Enter default currency...' />
                 <InputFormField form={storeConfigForm} name='defaultShortageLimit' label="Default Shortage Limit" placeholder='Enter default shortage limit...' type='number' />
-                <SwitchFormField form={storeConfigForm} name='showTaxInclusivePrices' label="Show Tax Inclusive Prices" type='checkbox' />
-                <SwitchFormField form={storeConfigForm} name='showDiscounts' label="Show Discounts" type='checkbox' />
+                <SwitchFormField form={storeConfigForm} name='showTaxInclusivePrices' label="Show Tax Inclusive Prices"  />
+                <SwitchFormField form={storeConfigForm} name='showDiscounts' label="Show Discounts"  />
               </div>
 
               <div className="submitBtn w-fit mt-auto">

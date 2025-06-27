@@ -142,23 +142,23 @@ const page = () => {
                 </div>
             </div>
 
-            <div className="tabList mt-5 w-full">
+            <div className="tabList my-6 h-[36px] sticky top-0 z-10 bg-[#f8f8fb] w-full">
                 {/* <ButtonLoading title='Product List' leftIcon='gridicons:product' outline={currentProductView !== 'products'} className={cn('cursor-pointer text-gray-500', currentProductView == 'products' && 'text-white')} onClick={() => { updateCurrentProductView('products') }} />
                 <ButtonLoading title='Shortage List' leftIcon='material-symbols:warning-outline-rounded' outline={currentProductView !== 'shortageList'} className={cn('cursor-pointer text-gray-500', currentProductView == 'shortageList' && 'text-white')} onClick={() => { updateCurrentProductView('shortageList') }} />
                 <ButtonLoading title='Close to Expiry' leftIcon='mingcute:time-line' outline={currentProductView !== 'closeToExpiry'} className={cn('cursor-pointer text-gray-500', currentProductView == 'closeToExpiry' && 'text-white')} onClick={() => { updateCurrentProductView('closeToExpiry') }} /> */}
 
-                <CustomNavTabs initialTab={currentProductView} clicked={(val) => {updateCurrentProductView(val) }} tabs={['Product List', 'Shortage List', 'Close to Expiry']} />
+                <CustomNavTabs initialTab={currentProductView} clicked={(val) => { updateCurrentProductView(val) }} tabs={['Product List', 'Shortage List', 'Close to Expiry']} />
             </div>
 
 
             {/* tabs */}
             {/* product list content*/}
-            {currentProductView == 'Product List' && <div className="productListTable mt-10">
+            {currentProductView == 'Product List' && <div className="productListTable">
                 <DataTable tableInformationContent={TableInformationContent} columns={columns} data={data} totalPages={1} showAddButton={false} addSearch addFiltering filterContent={FilterComponent} />
             </div>}
 
             {/* Shortage list content*/}
-            {currentProductView == 'Shortage List' && <div className="productListTable mt-10">
+            {currentProductView == 'Shortage List' && <div className="productListTable">
                 <DataTable tableInformationContent={<div className='pb-5'>
                     <p className='text-xl font-semibold'>Shortage List</p>
 
@@ -167,7 +167,7 @@ const page = () => {
             </div>}
 
             {/* Close to Expiry content*/}
-            {currentProductView == 'Close to Expiry' && <div className="productListTable mt-10">
+            {currentProductView == 'Close to Expiry' && <div className="productListTable">
                 <DataTable tableInformationContent={<div className='pb-5'>
                     <p className='text-xl font-semibold'>Close to Expiry</p>
 

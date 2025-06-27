@@ -140,7 +140,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="addProductsPage mx auto maximum-width mt-6 border rounded-[8px] bg-white p-6 py-8">
+      <div className="addProductsPage mx auto maximum-width mt-6 border rounded-[8px] bg-white p-4 py-8">
         {/* form content */}
         <Form {...productForm}>
           <form className="formContent w-full ">
@@ -174,7 +174,7 @@ const page = () => {
                   </div>
                   {/* list of selected images */}
                   <div className="selectedImagesList mt-4 p-.5">
-                    <div className="prodImage size-[85px] rounded-lg shadow relative">
+                    <div className="prodImage size-[85px] rounded-xl shadow relative">
                       <img
                         src="/images/sampleProdImage.png"
                         alt="Picture of the author"
@@ -194,7 +194,7 @@ const page = () => {
                     {/* variant */}
                     {
                       productForm.watch('variants')?.map((variant, idx) => (
-                        <div className="variant bg-gray-50 p-3 flex flex-col gap-2 rounded-lg relative" key={idx}>
+                        <div className="variant bg-gray-50 p-3 flex flex-col gap-2 rounded-xl relative" key={idx}>
                           {/* delete the variant */}
                           <div className="deleteVariant absolute top-2 right-2">
                             <Tooltip>

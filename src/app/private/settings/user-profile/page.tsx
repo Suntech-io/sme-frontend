@@ -70,7 +70,7 @@ const page = () => {
     return (
         <div className='userProfilePage h-full grid grid-cols-2 gap-5'>
             {/* Personal Details */}
-            <section className="personalDetails bg-white rounded-lg border p-6 h-full flex flex-col">
+            <section className="personalDetails bg-white rounded-xl border p-4 h-full flex flex-col">
                 {/* heading */}
                 <div className=''>
                     <p className='text-xl font-semibold'>Personal Details</p>
@@ -124,7 +124,7 @@ const page = () => {
                 </div>
             </section>
             {/* security details */}
-            <section className="securityDetails bg-white rounded-lg border p-6 h-full flex flex-col">
+            <section className="securityDetails bg-white rounded-xl border p-4 h-full flex flex-col">
                 {/* heading */}
                 <div className=''>
                     <p className='text-xl font-semibold'>Security Details</p>
