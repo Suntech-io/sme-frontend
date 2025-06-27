@@ -62,6 +62,7 @@ interface DataTableProps<TData, TValue> {
   tableInformationContent?: React.ComponentType<any> | React.ReactElement
   // setPageSize?: (pageSize: number) => void;
   onSearchInput?: (val: string) => void
+  hideColumnVisibility?: boolean;
 }
 
 export default function DataTable<TData, TValue>({
@@ -88,6 +89,7 @@ export default function DataTable<TData, TValue>({
   filterContent,
   tableInformationContent,
   onSearchInput,
+  hideColumnVisibility = false,
   isLoading = false,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -166,7 +168,7 @@ export default function DataTable<TData, TValue>({
                 {addButtonLabel}
               </Button>
             )}
-            <DropdownMenu>
+           {!hideColumnVisibility && <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
@@ -197,7 +199,7 @@ export default function DataTable<TData, TValue>({
                     );
                   })}
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu>}
           </div>
         </div>
       )}
