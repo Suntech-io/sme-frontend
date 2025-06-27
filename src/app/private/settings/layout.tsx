@@ -21,7 +21,7 @@ export default function SettingsLayout({
                     </div>
 
                     {/* tabs */}
-                    <div className="tabs my-6">
+                    <div className="tabs my-6 h-[36px] sticky top-0 z-10 bg-[#f8f8fb]">
                         <SettingsTabs />
                     </div>
                     <main className="w-full h-full">{children}</main>
