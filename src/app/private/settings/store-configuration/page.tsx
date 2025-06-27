@@ -175,7 +175,7 @@ const page = () => {
 
       <section className="paymentMethodTable mt-10">
         <AddPaymentMethod open={showAddPaymentMethod} onOpenChange={setshowAddPaymentMethod} />
-        <DataTable tableInformationContent={<div className='pb-5 flex justify-between'>
+        <DataTable tableInformationContent={<div className='pb-5 flex justify-between items-center'>
           {/* left side */}
           <div className="leftSide">
             <p className='text-xl font-semibold'>Payment Method</p>

@@ -7,6 +7,8 @@ import DataTable from '@/customComponents/datatable'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import AddMemberModal from '@/customComponents/settings/AddMemberModal'
+import ButtonLoading from '@/customComponents/Button'
 
 const userData = [
   {
@@ -121,15 +123,23 @@ const userColumns: ColumnDef<any>[] = [
 ]
 
 const page = () => {
+  const [showAddMember, setshowAddMember] = React.useState<boolean>(false)
+
   return (
     <div className='userManagementPage'>
-      <DataTable tableInformationContent={<div className='pb-5'>
+      <AddMemberModal modal={true} open={showAddMember} onOpenChange={setshowAddMember} />
+
+      <DataTable tableInformationContent={<div className='pb-5 flex justify-between items-center'>
         {/* left side */}
         <div className="leftSide">
           <p className='text-xl font-semibold'>User Management</p>
           <p className='mt-1 text-mediumGrey text-sm'>Manage details of members of your business</p>
         </div>
-      </div>} columns={userColumns} data={userData} totalPages={1} addFiltering/>
+        {/* right side */}
+        <div className="rightSide">
+          <ButtonLoading title='Add Member' leftIcon='formkit:add' className='cursor-pointer w-fit' onClick={() => { setshowAddMember(true) }} />
+        </div>
+      </div>} columns={userColumns} data={userData} totalPages={1} addFiltering />
     </div>
   )
 }

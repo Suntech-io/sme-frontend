@@ -82,7 +82,7 @@ const AddPaymentMethod = ({ modal = true, open = false, onOpenChange }: AddPayme
                         </div>
                         <DialogFooter>
                             <DialogClose asChild>
-                                <ButtonLoading variant={'outline'} title='Cancel' className='text-red-500 border-red-500 hover:bg-red-500 hover:text-white' />
+                                <ButtonLoading variant={'outline'} title='Cancel' className='text-red-500'  />
                                 {/* <Button variant="outline">Cancel</Button> */}
                             </DialogClose>
                             <ButtonLoading title='Save payment method' />

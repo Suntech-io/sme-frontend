@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const personalDetailsSchema = z.object({
     firstName: z.string().min(1, 'First name is required'),
-    middleName: z.string(),
+    otherNames: z.string(),
     lastName: z.string().min(1, 'Last name is required'),
     email: z.string().email().min(1, 'Email is required'),
     phoneNumber: z.string()
@@ -42,7 +42,7 @@ const page = () => {
             email: '',
             firstName: '',
             lastName: '',
-            middleName: '',
+            otherNames: '',
             phoneNumber: ''
         }
     })
@@ -83,8 +83,8 @@ const page = () => {
                     <Form {...personalDetsForm}>
                         <form className='space-y-4 h-full flex flex-col'  onSubmit={personalDetsForm.handleSubmit(handlePersonalDetailsSubmit)}>
                             <InputFormField form={personalDetsForm} name='firstName' label="First Name" placeholder='Enter First name...' />
-                            <InputFormField form={personalDetsForm} name='middleName' label="Middle Name" placeholder='Enter Middle name...' />
                             <InputFormField form={personalDetsForm} name='lastName' label="Last Name" placeholder='Enter Last name...' />
+                            <InputFormField form={personalDetsForm} name='otherNames' label="Other names" placeholder='Enter other names...' />
                             <InputFormField form={personalDetsForm} name='email' label="Email" placeholder='Enter email name...' />
                             <PhoneNumberFormField form={personalDetsForm} name="phoneNumber"
                                 label="Phone Number"

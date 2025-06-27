@@ -37,7 +37,7 @@ export default function ButtonLoading({
 
 }: ButtonLoadingProps) {
     return (
-        <Button type={type} disabled={loading} className={cn('flex items-center justify-center gap-1', outline ? 'bg-transparent text-inherit border border-current hover:bg-accent-foreground/5' : '', className)} onClick={onClick} style={{ backgroundColor: bgColor }} variant={variant || "default"}>
+        <Button type={type} disabled={loading} className={cn('flex items-center justify-center gap-1', outline ? 'bg-transparent text-inherit border border-current hover:bg-accent-foreground/5' : '',variant=='destructive'&&'text-red-500 border-red-500 hover:bg-red-500 hover:text-white', className)} onClick={onClick} style={{ backgroundColor: bgColor }} variant={variant || "default"}>
             {/* icon and loading */}
             {<div className={cn("iconOrLoading", (loading || leftIcon) ? 'block' : 'hidden')}>
                 {/* loading */}

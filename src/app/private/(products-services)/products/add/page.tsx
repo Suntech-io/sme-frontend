@@ -143,7 +143,7 @@ const page = () => {
       <div className="addProductsPage mx auto maximum-width mt-6 border rounded-[8px] bg-white p-4 py-8">
         {/* form content */}
         <Form {...productForm}>
-          <form className="formContent w-full ">
+          <form className="formContent w-full">
             <div className="inputsContainer grid gap-10 grid-cols-2 w-full">
               {/* left side */}
               <div className="leftSide px-4 py-6 border hover:shadow flex flex-col gap-4 rounded h-fit sticky top-28">
