@@ -39,6 +39,7 @@ interface InputFormFieldProps {
   name: string;
   type?: HTMLInputTypeAttribute;
   className?: string;
+  containerClassName?: string;
   // Add a prop to pass through to the Input component
   inputProps?: React.ComponentProps<typeof Input>;
 }
@@ -126,6 +127,7 @@ export const CheckBoxFormField = ({
   name,
   disabled = false,
   className,
+  containerClassName,
   inputProps = {},
 }: InputFormFieldProps) => {
   return (
@@ -134,15 +136,17 @@ export const CheckBoxFormField = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Checkbox
-              checked={field.value}
-              onCheckedChange={field.onChange}
-              className={className}
-              disabled={disabled}
-            />
-          </FormControl>
+          <div className={cn("checkBoxContainer", containerClassName)}>
+            <FormLabel>{label}</FormLabel>
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+                className={className}
+                disabled={disabled}
+              />
+            </FormControl>
+          </div>
           <FormDescription>{description}</FormDescription>
           <FormMessage className="text-left -mt-2" />
         </FormItem>
@@ -493,9 +497,9 @@ export const SelectFormField = ({
                 </SelectContent>
               </Select>
             </FormControl>
-              <FormDescription className="pl-5">
-                {form.watch(name!)}
-              </FormDescription>
+            {showWatchValue && <FormDescription className="pl-5">
+              {form.watch(name!)}
+            </FormDescription>}
             <FormMessage className="text-left -mt-2" />
           </FormItem>
         )}

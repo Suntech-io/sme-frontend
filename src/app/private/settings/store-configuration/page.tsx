@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -14,6 +14,7 @@ import DataTable from '@/customComponents/datatable'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import IconifyIcon from '@/customComponents/IconifyIcon'
 import { cn } from '@/lib/utils'
+import AddPaymentMethod from '@/customComponents/settings/AddPaymentMethod'
 
 
 const productConfigurationSchema = z.object({
@@ -107,8 +108,8 @@ const paymentMethodColumns: ColumnDef<any>[] = [
     id: "status",
     cell: ({ row }: any) => (
       <div className="w-[120px]">
-        <div className={cn("status flex items-center gap-1 rounded-xl",row.original?.status === 'Active' ? 'bg-[#3E875E] text-white' : 'bg-lightGrey')}>
-          <IconifyIcon fontSize={16} icon={row.original?.status === 'Active' ?'ic:round-check-circle':'mynaui:badge'} className={cn(row.original?.status === 'Active' ? 'text-white' : 'bg-lightGrey')} />
+        <div className={cn("status flex items-center gap-1 rounded-xl", row.original?.status === 'Active' ? 'bg-[#3E875E] text-white' : 'bg-lightGrey')}>
+          <IconifyIcon fontSize={16} icon={row.original?.status === 'Active' ? 'ic:round-check-circle' : 'mynaui:badge'} className={cn(row.original?.status === 'Active' ? 'text-white' : 'bg-lightGrey')} />
           <p>{row.original?.status}</p>
         </div>
       </div>
@@ -134,6 +135,8 @@ const page = () => {
     }
   })
 
+  const [showAddPaymentMethod, setshowAddPaymentMethod] = useState<boolean>(false);
+
 
   return (
     <div className='storeConfigurationPage h-full'>
@@ -157,8 +160,8 @@ const page = () => {
               <div className="inputs grid grid-cols-2 gap-4">
                 <InputFormField form={storeConfigForm} name='defaultCurrency' label="Default Currency" placeholder='Enter default currency...' />
                 <InputFormField form={storeConfigForm} name='defaultShortageLimit' label="Default Shortage Limit" placeholder='Enter default shortage limit...' type='number' />
-                <SwitchFormField form={storeConfigForm} name='showTaxInclusivePrices' label="Show Tax Inclusive Prices"  />
-                <SwitchFormField form={storeConfigForm} name='showDiscounts' label="Show Discounts"  />
+                <SwitchFormField form={storeConfigForm} name='showTaxInclusivePrices' label="Show Tax Inclusive Prices" />
+                <SwitchFormField form={storeConfigForm} name='showDiscounts' label="Show Discounts" />
               </div>
 
               <div className="submitBtn w-fit mt-auto">
@@ -171,6 +174,7 @@ const page = () => {
       </section>
 
       <section className="paymentMethodTable mt-10">
+        <AddPaymentMethod open={showAddPaymentMethod} onOpenChange={setshowAddPaymentMethod} />
         <DataTable tableInformationContent={<div className='pb-5 flex justify-between'>
           {/* left side */}
           <div className="leftSide">
@@ -179,7 +183,7 @@ const page = () => {
           </div>
           {/* right side */}
           <div className="rightSide">
-            <ButtonLoading title='Add Payment Method' leftIcon='formkit:add' className='cursor-pointer w-fit' onClick={() => { console.log("Add Payment Method Clicked") }} />
+            <ButtonLoading title='Add Payment Method' leftIcon='formkit:add' className='cursor-pointer w-fit' onClick={() => { setshowAddPaymentMethod(true) }} />
           </div>
 
         </div>} columns={paymentMethodColumns} data={paymentMethodData} totalPages={1} />
