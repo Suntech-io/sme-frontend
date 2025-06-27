@@ -9,13 +9,13 @@ import { useForm } from 'react-hook-form';
 import { SwitchFormField } from '@/customComponents/FormFields'
 
 const notificationsSettingsSchema = z.object({
-  lowStockAlert: z.boolean().default(false),
-  paymentReceivedAlert: z.boolean().default(false),
-  newOrderAlert: z.boolean().default(false),
-  newServiceBookingAlert: z.boolean().default(false),
-  emailChannel: z.boolean().default(false),
-  smsChannel: z.boolean().default(false),
-  inAppChannel: z.boolean().default(false),
+  lowStockAlert: z.boolean(),
+  paymentReceivedAlert: z.boolean(),
+  newOrderAlert: z.boolean(),
+  newServiceBookingAlert: z.boolean(),
+  emailChannel: z.boolean(),
+  smsChannel: z.boolean(),
+  inAppChannel: z.boolean(),
 });
 
 
@@ -91,8 +91,40 @@ const page = () => {
                 <SwitchFormField form={notificationsForm} name='newServiceBookingAlert' />
               </div>
             </div>
+          </section>
 
+          <section className="notificationPreferences mt-6">
+            {/* heading */}
+            <p>
+              <span className='text-lg font-semibold'>Delivery Channels</span>
+            </p>
 
+            <div className="cardsContainer mt-4 space-y-3">
+              {/* Email */}
+              <div className="lowStockCard border hover:shadow transition-all flex justify-between items-center rounded-xl px-4 py-6">
+                <div className="cardInfo">
+                  <p className='text-base font-semibold'>Email</p>
+                </div>
+                {/* switch */}
+                <SwitchFormField form={notificationsForm} name='emailChannel' />
+              </div>
+              {/* SMS */}
+              <div className="paymentReceivedCard hover:shadow transition-all border flex justify-between items-center rounded-xl px-4 py-6">
+                <div className="cardInfo">
+                  <p className='text-base font-semibold'>SMS</p>
+                </div>
+                {/* switch */}
+                <SwitchFormField form={notificationsForm} name='smsChannel' />
+              </div>
+              {/* In-App */}
+              <div className="newOrderCard border hover:shadow transition-all flex justify-between items-center rounded-xl px-4 py-6">
+                <div className="cardInfo">
+                  <p className='text-base font-semibold'>In-App Notification</p>
+                </div>
+                {/* switch */}
+                <SwitchFormField form={notificationsForm} name='inAppChannel' />
+              </div>
+            </div>
           </section>
         </form>
       </Form>

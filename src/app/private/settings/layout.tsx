@@ -11,7 +11,7 @@ export default function SettingsLayout({
                 {/* Layout UI */}
                 {/* Place children where you want to render a page or nested layout */}
                 {/* header */}
-                <div className="layoutContainer p-4 h-full flex flex-col">
+                <div className="layoutContainer p-4 h-full flex flex-col mb-10">
                     <div className="headerText">
                         <p className="subHeader text-[24px] text-darkGrey">
                             Settings

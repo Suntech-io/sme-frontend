@@ -146,7 +146,7 @@ const page = () => {
           <form className="formContent w-full ">
             <div className="inputsContainer grid gap-10 grid-cols-2 w-full">
               {/* left side */}
-              <div className="leftSide px-4 py-6 border shadow flex flex-col gap-4 rounded h-fit sticky top-28">
+              <div className="leftSide px-4 py-6 border hover:shadow flex flex-col gap-4 rounded h-fit sticky top-28">
                 <InputFormField form={productForm} name='name' label="Product Name" placeholder='Enter product name...' />
                 <InputFormField form={productForm} name='category' label="Category" placeholder='Enter product category...' />
                 <TextAreaFormField form={productForm} name='name' label="Product description" placeholder='Enter product description...' />
@@ -157,7 +157,7 @@ const page = () => {
               </div>
 
               {/* right side */}
-              <div className="rightSide px-4 py-6 border shadow flex flex-col gap-4 rounded">
+              <div className="rightSide px-4 py-6 border hover:shadow flex flex-col gap-4 rounded">
                 <div className="images">
                   {/* image selection */}
                   <div className="imageSelection ">
