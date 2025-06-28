@@ -29,7 +29,7 @@ function PopoverDemo() {
               Edit
             </div>
             <div className="grid p-2 hover:bg-gray-50">
-              Disable
+              Mark as Inactive
             </div>
             <div className="grid p-2 hover:bg-gray-50">
               Delete
@@ -51,42 +51,42 @@ const servicesData = [
     dateCreated: '12 June,2025',
     status: 'Active',
   },
-    {
-      serviceName: 'Hair Styling',
-      category: 'Hair Care',
-      priceType: 'Hourly',
-      description: 'Professional hair styling services including cuts, blowouts, and treatments.',
-      price: '150 - 500',
-      dateCreated: '20 May,2025',
-      status: 'Active',
-    },
-    {
-      serviceName: 'Facial Treatment',
-      category: 'Skin Care',
-      priceType: 'Monthly',
-      description: 'Deep cleansing and rejuvenating facial treatments for all skin types.',
-      price: '400',
-      dateCreated: '5 April,2025',
-      status: 'Inactive',
-    },
-    {
-      serviceName: 'Massage Therapy',
-      category: 'Wellness',
-      priceType: 'Session',
-      description: 'Therapeutic massage sessions to relieve stress and muscle tension.',
-      price: '250',
-      dateCreated: '18 March,2025',
-      status: 'Active',
-    },
-    {
-      serviceName: 'Makeup Application',
-      category: 'Beauty',
-      priceType: 'Per Event',
-      description: 'Professional makeup services for special occasions and events.',
-      price: '350',
-      dateCreated: '28 February,2025',
-      status: 'Inactive',
-    },
+  {
+    serviceName: 'Hair Styling',
+    category: 'Hair Care',
+    priceType: 'Hourly',
+    description: 'Professional hair styling services including cuts, blowouts, and treatments.',
+    price: '150 - 500',
+    dateCreated: '20 May,2025',
+    status: 'Active',
+  },
+  {
+    serviceName: 'Facial Treatment',
+    category: 'Skin Care',
+    priceType: 'Monthly',
+    description: 'Deep cleansing and rejuvenating facial treatments for all skin types.',
+    price: '400',
+    dateCreated: '5 April,2025',
+    status: 'Inactive',
+  },
+  {
+    serviceName: 'Massage Therapy',
+    category: 'Wellness',
+    priceType: 'Session',
+    description: 'Therapeutic massage sessions to relieve stress and muscle tension.',
+    price: '250',
+    dateCreated: '18 March,2025',
+    status: 'Active',
+  },
+  {
+    serviceName: 'Makeup Application',
+    category: 'Beauty',
+    priceType: 'Per Event',
+    description: 'Professional makeup services for special occasions and events.',
+    price: '350',
+    dateCreated: '28 February,2025',
+    status: 'Inactive',
+  },
 ]
 
 const serviceColumns: ColumnDef<any>[] = [
@@ -162,7 +162,7 @@ const page = () => {
 
   return (
     <div className='userManagementPage'>
-      <AddMemberModal modal={true} open={showAddServiceModal} onOpenChange={setshowAddServiceModal} />
+      {/* <AddMemberModal modal={true} open={showAddServiceModal} onOpenChange={setshowAddServiceModal} /> */}
 
       <DataTable tableInformationContent={<div className='pb-5 flex justify-between items-center'>
         {/* left side */}
