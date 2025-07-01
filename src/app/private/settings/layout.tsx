@@ -6,8 +6,8 @@ export default function SettingsLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en">
-            <body>
+        // <html lang="en">
+            <div>
                 {/* Layout UI */}
                 {/* Place children where you want to render a page or nested layout */}
                 {/* header */}
@@ -27,7 +27,7 @@ export default function SettingsLayout({
                     <main className="w-full h-full">{children}</main>
 
                 </div>
-            </body>
-        </html>
+            </div>
+        // </html>
     )
 }

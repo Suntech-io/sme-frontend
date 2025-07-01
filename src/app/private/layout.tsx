@@ -32,8 +32,8 @@ import PrivateLayoutLocal from '@/customComponents/PrivateLayout';
 const PrivateLayout = ({ children }: { children: ReactNode }) => {
 
   return (
-    <html lang="en">
-      <body>
+    // <html lang="en">
+      <div>
         <div className="App h-screen overflow-y-hidden">
           <SidebarProvider>
             <AppSidebar />
@@ -95,8 +95,8 @@ const PrivateLayout = ({ children }: { children: ReactNode }) => {
           </SidebarProvider>
         </div>
 
-      </body>
-    </html>
+      </div>
+    // </html>
   )
 }
 

@@ -145,12 +145,20 @@ const data = {
           url: "/private/settings/user-profile",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "Business Settings",
+          url: "/private/settings/business-settings",
         },
         {
-          title: "Billing",
-          url: "#",
+          title: "Store Configuration",
+          url: "/private/settings/store-configuration",
+        },
+        {
+          title: "User Management",
+          url: "/private/settings/user-management",
+        },
+        {
+          title: "Notifications",
+          url: "/private/settings/notifications",
         },
       ],
     },
