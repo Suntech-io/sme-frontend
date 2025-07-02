@@ -88,17 +88,17 @@ export default function StepperCard({ title, description, steps }: IStepperCardP
     const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100
 
     return (
-        <div className="w-full mx-auto p-6">
-            <Card>
-                <CardContent className="p-8">
+        <div className="w-full mx-auto h-full overflow-hidden">
+            <Card className="h-full flex flex-col py-1">
+                <CardContent className="p-4 flex flex-col justify-between h-full gap-4  overflow-hidden">
                     {/* Stepper Header */}
-                    <div className="mb-8">
+                    <div className="mb-8 ">
                         {title && <h2 className={cn("text-2xl font-bold text-center mb-4", !description && 'mb-8')}>{title}</h2>}
                         {/* stepper description */}
                         {description && <p className="text-gray-600 text-center mb-8">{description}</p>}
 
                         {/* Progress Bar Container */}
-                        <div className="relative mb-8">
+                        <div className="relative  ">
                             {/* Background Progress Bar */}
                             <div className="absolute top-1/2 left-0 right-0 h-2 bg-gray-200 rounded-full transform -translate-y-1/2 z-0"></div>
 
@@ -113,30 +113,35 @@ export default function StepperCard({ title, description, steps }: IStepperCardP
                                 {steps.map((step, idx) => {
                                     const status = getStepStatus(step.id)
                                     return (
-
-                                        <button
+                                        <div className="btn relative w-fit"
                                             key={step.id}
-                                            onClick={() => handleStepClick(step.id)}
-                                            className={`relative
-                        w-10 h-10 rounded-full border-4 flex items-center justify-center font-semibold text-sm
-                        transition-all duration-500 ease-in-out transform ${status === "completed"
-                                                    ? "bg-blue-600 border-blue-600 text-white shadow-lg"
-                                                    : status === "current"
-                                                        ? "bg-white border-blue-600 text-blue-600 shadow-lg ring-4 ring-blue-100"
-                                                        : "bg-white border-gray-300 text-gray-400 hover:border-gray-400"
-                                                }
-                      `}
                                         >
-                                            {status === "completed" ? (
-                                                <Check className="w-5 h-5 animate-in zoom-in duration-300" />
-                                            ) : (
-                                                <span className="animate-in fade-in duration-300">{step.id}</span>
-                                            )}
+                                            <button
+                                                onClick={() => handleStepClick(step.id)}
+                                                className={`
+                        w-10 h-10 rounded-full border-4 flex hover:scale-110 items-center justify-center font-semibold text-sm
+                        transition-all duration-500 ease-in-out transform ${status === "completed"
+                                                        ? "bg-blue-600 border-blue-600 text-white shadow-lg"
+                                                        : status === "current"
+                                                            ? "bg-white border-blue-600 text-blue-600 shadow-lg ring-4 ring-blue-100"
+                                                            : "bg-white border-gray-300 text-gray-400 hover:border-gray-400"
+                                                    }
+                      `}
+                                            >
+                                                {status === "completed" ? (
+                                                    <Check className="w-5 h-5 animate-in zoom-in duration-300" />
+                                                ) : (
+                                                    <span className="animate-in fade-in duration-300">{step.id}</span>
+                                                )}
+
+
+                                            </button>
+
 
                                             {/* step label */}
                                             <div ref={el => { itemLabelRefs.current[idx] = el }} key={step.id} style={{
                                                 width: `${(containerWidth / steps.length) - 45}px`,
-                                            }} className={cn(`itemLabel flex-1 px-2 absolute top-14`, idx === 0 ? "text-left left-0" : idx === steps.length - 1 ? "text-right right-0" : "text-center")}>
+                                            }} className={cn(`itemLabel  flex- absolute top-14`, idx === 0 ? "text-left left-0" : idx === steps.length - 1 ? "text-right right-0" : "text-center right-1/2 translate-x-1/2")}>
                                                 <h3
                                                     className={`
                       text-sm font-medium transition-colors duration-300
@@ -146,7 +151,9 @@ export default function StepperCard({ title, description, steps }: IStepperCardP
                                                     {step.title}
                                                 </h3>
                                                 <p
-                                                    className={`
+                                                    className={`                                                    {step.title}
+                                                    {step.title}
+
                       text-xs mt-1 transition-colors duration-300
                       ${status === "current" ? "text-blue-500" : status === "completed" ? "text-blue-500" : "text-gray-400"}
                     `}
@@ -154,7 +161,7 @@ export default function StepperCard({ title, description, steps }: IStepperCardP
                                                     {step.description}
                                                 </p>
                                             </div>
-                                        </button>
+                                        </div>
                                     )
                                 })}
                             </div>
@@ -167,11 +174,13 @@ export default function StepperCard({ title, description, steps }: IStepperCardP
 
 
                     {/* Step Content */}
-                    <div className="min-h-[400px] mb-8 mt-30" style={{ marginTop: maxLabelHeight + 80 }}>
+                    <div className="stepContentMain !overflow-y-auto mb-8 h-full " style={{ marginTop: maxLabelHeight }}>
                         <div className="animate-in slide-in-from-right-5 fade-in duration-500">
-                            <h3 className="text-xl font-semibold mb-2">{steps[currentStep - 1].title}</h3>
-                            <p className="text-gray-600 mb-6">{steps[currentStep - 1].description}</p>
-                            {steps[currentStep - 1].content}
+
+                            {/*step content */}
+                            <div className="stepContent">
+                                {steps[currentStep - 1].content}
+                            </div>
                         </div>
                     </div>
 
