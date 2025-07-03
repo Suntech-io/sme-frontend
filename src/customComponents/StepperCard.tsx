@@ -189,15 +189,15 @@ export default function StepperCard({ title, description, steps, rightBtnClicked
                     </div>
 
                     {/* Navigation Buttons */}
-                    <div className="grid grid-cols-3 ">
-                        <div className=""></div>
+                    <div className="flex items-center justify-between flex-wrap">
+                        <div className="flex-1"></div>
 
-                        <div className="flex  justify-center items-center gap-2 text-sm text-gray-500">
+                        <div className="flex flex-1 justify-center items-center gap-2 text-sm text-gray-500">
                             Step {currentStep} of {totalSteps}
                         </div>
 
 
-                        <div className="stepControls flex items-center justify-end gap-4 ">
+                        <div className="stepControls flex-1 flex items-center justify-end gap-4 ">
                             {/* prev */}
                             <Button
                                 variant="outline"
@@ -206,7 +206,7 @@ export default function StepperCard({ title, description, steps, rightBtnClicked
                                 className="flex items-center gap-2 transition-all duration-200 bg-transparent"
                             >
                                 <ChevronLeft className="w-4 h-4" />
-                                {steps[currentStep].leftControlBtnLabel ? steps[currentStep].leftControlBtnLabel : 'Previous'}
+                                {steps[currentStep]?.leftControlBtnLabel ? steps[currentStep].leftControlBtnLabel : 'Previous'}
                             </Button>
 
                             {/* next */}
@@ -216,7 +216,7 @@ export default function StepperCard({ title, description, steps, rightBtnClicked
                                 disabled={currentStep === totalSteps}
                                 className="flex items-center gap-2 transition-all duration-200"
                             >
-                                {steps[currentStep].rightControlBtnLabel ? steps[currentStep].rightControlBtnLabel : (currentStep === totalSteps ? "Complete" : "Next")}
+                                {steps[currentStep]?.rightControlBtnLabel ? steps[currentStep].rightControlBtnLabel : (currentStep === totalSteps ? "Complete" : "Next")}
                                 {currentStep !== totalSteps && <ChevronRight className="w-4 h-4" />}
                             </Button>
                         </div>
