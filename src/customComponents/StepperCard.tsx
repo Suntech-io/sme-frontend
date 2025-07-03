@@ -12,6 +12,8 @@ export interface IStep {
     id: number
     title?: string
     description?: string
+    rightControlBtnLabel?: string //writing or label for the left button
+    leftControlBtnLabel?: string // writing or label for the right button
     content: React.ReactNode
 }
 
@@ -19,10 +21,11 @@ export interface IStepperCardProps {
     steps: IStep[]
     title?: string,
     description?: string | React.ReactNode
-    func?: (som: any) => void
+    rightBtnClicked: (callback: () => void) => void
+    leftBtnClicked: (callback: () => void) => void
 }
 
-export default function StepperCard({ title, description, steps,func }: IStepperCardProps) {
+export default function StepperCard({ title, description, steps, rightBtnClicked, leftBtnClicked }: IStepperCardProps) {
     const [currentStep, setCurrentStep] = useState(1)
     const [completedSteps, setCompletedSteps] = useState<number[]>([])
 
@@ -198,22 +201,22 @@ export default function StepperCard({ title, description, steps,func }: IStepper
                             {/* prev */}
                             <Button
                                 variant="outline"
-                                onClick={handlePrevious}
+                                onClick={() => { leftBtnClicked && leftBtnClicked(handlePrevious) }}
                                 disabled={currentStep === 1}
                                 className="flex items-center gap-2 transition-all duration-200 bg-transparent"
                             >
                                 <ChevronLeft className="w-4 h-4" />
-                                Previous
+                                {steps[currentStep].leftControlBtnLabel ? steps[currentStep].leftControlBtnLabel : 'Previous'}
                             </Button>
 
                             {/* next */}
                             <Button
                                 // onClick={handleNext}
-                                onClick={()=>{func && func(handleNext)}}
+                                onClick={() => { rightBtnClicked && rightBtnClicked(handleNext) }}
                                 disabled={currentStep === totalSteps}
                                 className="flex items-center gap-2 transition-all duration-200"
                             >
-                                {currentStep === totalSteps ? "Complete" : "Next"}
+                                {steps[currentStep].rightControlBtnLabel ? steps[currentStep].rightControlBtnLabel : (currentStep === totalSteps ? "Complete" : "Next")}
                                 {currentStep !== totalSteps && <ChevronRight className="w-4 h-4" />}
                             </Button>
                         </div>

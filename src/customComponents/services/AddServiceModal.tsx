@@ -191,6 +191,13 @@ const AddServiceModal = ({ modal = true, open = false, onOpenChange }: AddCatego
     const handleNextPage = (val: any) => {
         // Logic to handle next page
         console.log('Next page clicked', val);
+        val()
+    }
+
+    const handlePrevPage =(val: any) => {
+        // Logic to handle next page
+        console.log('prev page clicked', val);
+        val()
     }
 
     
@@ -207,7 +214,7 @@ const AddServiceModal = ({ modal = true, open = false, onOpenChange }: AddCatego
                         </DialogHeader>
 
                         {/* stepper */}
-                        <StepperCard steps={steps} description="" title='' />
+                        <StepperCard steps={steps} description="" title='' rightBtnClicked={handleNextPage} leftBtnClicked={handlePrevPage}/>
 
                     </DialogContent>
                 </form>
