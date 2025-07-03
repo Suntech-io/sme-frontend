@@ -19,9 +19,10 @@ export interface IStepperCardProps {
     steps: IStep[]
     title?: string,
     description?: string | React.ReactNode
+    func?: (som: any) => void
 }
 
-export default function StepperCard({ title, description, steps }: IStepperCardProps) {
+export default function StepperCard({ title, description, steps,func }: IStepperCardProps) {
     const [currentStep, setCurrentStep] = useState(1)
     const [completedSteps, setCompletedSteps] = useState<number[]>([])
 
@@ -89,7 +90,7 @@ export default function StepperCard({ title, description, steps }: IStepperCardP
 
     return (
         <div className="w-full mx-auto h-full overflow-hidden">
-            <Card className="h-full flex flex-col py-1">
+            <Card className="h-full flex flex-col py-1" >
                 <CardContent className="p-4 flex flex-col justify-between h-full gap-4  overflow-hidden">
                     {/* Stepper Header */}
                     <div className="mb-8 ">
@@ -207,7 +208,8 @@ export default function StepperCard({ title, description, steps }: IStepperCardP
 
                             {/* next */}
                             <Button
-                                onClick={handleNext}
+                                // onClick={handleNext}
+                                onClick={()=>{func && func(handleNext)}}
                                 disabled={currentStep === totalSteps}
                                 className="flex items-center gap-2 transition-all duration-200"
                             >

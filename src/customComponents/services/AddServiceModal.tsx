@@ -186,6 +186,14 @@ const AddServiceModal = ({ modal = true, open = false, onOpenChange }: AddCatego
             role: 'Active',
         },
     });
+
+
+    const handleNextPage = (val: any) => {
+        // Logic to handle next page
+        console.log('Next page clicked', val);
+    }
+
+    
     return (
         <Dialog modal={modal} open={open} onOpenChange={onOpenChange}>
             <Form {...form}>
