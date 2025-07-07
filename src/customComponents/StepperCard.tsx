@@ -213,7 +213,7 @@ export default function StepperCard({ title, description, steps, rightBtnClicked
                             <Button
                                 // onClick={handleNext}
                                 onClick={() => { rightBtnClicked && rightBtnClicked(handleNext) }}
-                                disabled={currentStep === totalSteps}
+                                // disabled={currentStep === totalSteps}
                                 className="flex items-center gap-2 transition-all duration-200"
                             >
                                 {steps[currentStep]?.rightControlBtnLabel ? steps[currentStep].rightControlBtnLabel : (currentStep === totalSteps ? "Complete" : "Next")}

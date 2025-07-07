@@ -8,7 +8,7 @@ import { InputFormField, SelectFormField, TextAreaFormField } from '../FormField
 
 
 
-const NewServiceForm = ({form,onSubmit}:{form:any,onSubmit:()=>void}) => {
+const NewServiceImageForm = ({form,onSubmit}:{form:any,onSubmit:()=>void}) => {
 
     return (
         <div className='w-full h-full'>
@@ -29,4 +29,4 @@ const NewServiceForm = ({form,onSubmit}:{form:any,onSubmit:()=>void}) => {
     )
 }
 
-export default NewServiceForm
+export default NewServiceImageForm
