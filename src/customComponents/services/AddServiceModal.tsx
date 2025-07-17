@@ -24,6 +24,7 @@ import { mobileMoneyProviders, paymentTypes } from '@/lib/globalConstants'
 import StepperCard from '../StepperCard'
 import NewServiceForm from './NewServiceForm'
 import ProgressBarStepperCard from '../ProgressBarStepper'
+import ServiceImageSelectionForm from './ServiceImageSelectionForm'
 
 
 type AddCategoryProps = {
@@ -78,7 +79,8 @@ const AddServiceModal = ({ modal = true, open = false, onOpenChange }: AddCatego
     }
 
 
-    // STEPS -------------------------------------------------------------------------------------------------------------------------------------------
+    // STEPS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     const steps = [
         {
             id: 1,
@@ -93,38 +95,11 @@ const AddServiceModal = ({ modal = true, open = false, onOpenChange }: AddCatego
             // title: "Account Setup",
             // description: "Configure your account preferences",
             content: (
-                <div className="space-y-4">
-                    <div>
-                        <label className="block text-sm font-medium mb-2">Username</label>
-                        <input
-                            type="text"
-                            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="Choose a username"
-                        />
-                    </div>
-                    <div>
-                      handleNextPage  <label className="block text-sm font-medium mb-2">Password</label>
-                        <input
-                            type="password"
-                            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="Create a password"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium mb-2">Account Type</label>
-                        <select className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                            <option>Personal</option>
-                            <option>Business</option>
-                            <option>Enterprise</option>
-                        </select>
-                    </div>
-                </div>
+                <ServiceImageSelectionForm />
             ),
         },
     ]
 
-
-   
 
 
     return (

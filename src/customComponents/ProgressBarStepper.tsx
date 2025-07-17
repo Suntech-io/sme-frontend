@@ -74,10 +74,10 @@ export default function ProgressBarStepperCard({ title, description, steps, righ
           </div>
 
           {/* Step Content */}
-          <div className="stepContentMain !overflow-y-auto mb-8 h-full">
-            <div className="animate-in slide-in-from-right-5 fade-in duration-500">
+          <div className="stepContentMain flex-1 mb-8 h-full max-h-[75%]">
+            <div className="animate-in slide-in-from-right-5 fade-in duration-500 flex flex-col h-full">
               {/*step content */}
-              <div className="stepContent">{steps[currentStep - 1].content}</div>
+              <div className="stepContent overflow-y-auto h-full">{steps[currentStep - 1].content}</div>
             </div>
           </div>
 
