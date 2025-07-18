@@ -7,10 +7,10 @@ import { ColumnDef } from '@tanstack/react-table'
 import DataTable from '@/customComponents/datatable'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import AddMemberModal from '@/customComponents/settings/AddMemberModal'
 import ButtonLoading from '@/customComponents/Button'
 import { number } from 'zod';
 import { Icon } from 'lucide-react';
+import AddCategoryModal from '@/customComponents/services/AddCategoryModal';
 
 
 function PopoverDemo() {
@@ -133,7 +133,7 @@ const page = () => {
 
     return (
         <div className='userManagementPage'>
-            {/* <AddMemberModal modal={true} open={showAddServiceModal} onOpenChange={setshowAddServiceModal} /> */}
+            <AddCategoryModal modal={true} open={showAddServiceModal} onOpenChange={setshowAddServiceModal} />
 
             <DataTable tableInformationContent={<div className='pb-5 flex justify-between items-center'>
                 {/* left side */}
