@@ -105,7 +105,7 @@ const AddServiceModal = ({ modal = true, open = false, onOpenChange }: AddCatego
     return (
         <Dialog modal={modal} open={open} onOpenChange={onOpenChange}>
 
-            <DialogContent className="sm:max-w-[500px] h-[90vh] flex flex-col testg">
+            <DialogContent className="sm:max-w-[500px] h-[90vh] flex flex-col">
                 <DialogHeader>
                     <DialogTitle>Add Service</DialogTitle>
                     <DialogDescription>
