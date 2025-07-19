@@ -19,7 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from '@/components/ui/form'
 import { useForm } from 'react-hook-form'
 import { cn } from '@/lib/utils'
-import { CheckBoxFormField, InputFormField, SelectFormField } from '../FormFields'
+import { CheckBoxFormField, InputFormField, SelectFormField, TextAreaFormField } from '../FormFields'
 import { mobileMoneyProviders, paymentTypes } from '@/lib/globalConstants'
 
 type AddCategoryProps = {
@@ -30,9 +30,9 @@ type AddCategoryProps = {
 
 const addCategorySchema = z.object({
     categoryName: z.string().min(1, 'Category name is required'),
-    LastName: z.string().min(1, 'Last Name is required'),
-    email: z.string().min(1, 'Account number is required'),
-    role: z.string().min(1, 'Role is required'),
+    description: z.string().min(1, 'Description is required'),
+    status: z.string().min(1, 'Account number is required'),
+    icon: z.string().min(1, 'Icon is required'),
 });
 
 const AddCategoryModal = ({ modal = true, open = false, onOpenChange }: AddCategoryProps) => {
@@ -40,9 +40,9 @@ const AddCategoryModal = ({ modal = true, open = false, onOpenChange }: AddCateg
         resolver: zodResolver(addCategorySchema),
         defaultValues: {
             categoryName: '',
-            LastName: '',
-            email: '',
-            role: 'Active',
+            description: '',
+            status: '',
+            icon: 'Active',
         },
     });
     return (
@@ -53,19 +53,21 @@ const AddCategoryModal = ({ modal = true, open = false, onOpenChange }: AddCateg
                         <DialogHeader>
                             <DialogTitle>Add Category</DialogTitle>
                             <DialogDescription>
-                                Add a new Category of service to your business.
+                                Add a new Category of service to your business.sss
                             </DialogDescription>
                         </DialogHeader>
                         {/* inputs-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
                         <div className="formInputs space-y-4">
-                            <InputFormField form={form} name="firstName" label="First Name" placeholder="Enter First name..." />
-
-                            {/* LastName */}
-                            <InputFormField form={form} name="LastName" label="LastName" placeholder="Select LastName..." />
-                            {/* Email */}
-                            <InputFormField form={form} name="email" label="Email" placeholder="Enter email..." type='email' />
-                            {/* role */}
-                            <SelectFormField form={form} name="role" label="role" placeholder="Select role..." options={[
+                            <InputFormField form={form} name="categoryName" label="Category Name" placeholder="Enter First name..." />
+                            {/* description */}
+                            <TextAreaFormField form={form} name="description" label="Description" placeholder="Category description..." />
+                            {/* status */}
+                            <SelectFormField form={form} name="status" label="Set Status" placeholder="Set status" options={[
+                                { label: 'Administrator', value: 'Administrator' },
+                                { label: 'Sales Agent', value: 'Sales Agent' },
+                            ]} />
+                            {/* Icon */}
+                            <SelectFormField form={form} name="icon" label="Icon" placeholder="Select icon..." options={[
                                 { label: 'Administrator', value: 'Administrator' },
                                 { label: 'Sales Agent', value: 'Sales Agent' },
                             ]} />
