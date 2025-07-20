@@ -42,7 +42,6 @@ export function NavMain({
   const pathName = usePathname()
 
   const activeLinkStyle = (route: string) => {
-    const style = ''
     if (route === pathName) return 'bg-primary/5 text-primary'
 
     if (pathName.includes(route)) return 'text-primary'
