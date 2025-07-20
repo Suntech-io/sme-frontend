@@ -18,7 +18,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 export function NavMain({
   items,
@@ -39,6 +39,14 @@ export function NavMain({
 
 
   const router = useRouter()
+  const pathName = usePathname()
+
+  const activeLinkStyle = (route: string) => {
+    const style = ''
+    if (route === pathName) return 'bg-primary/5 text-primary'
+
+    if (pathName.includes(route)) return 'text-primary'
+  }
 
   return (
     <SidebarGroup>
@@ -53,7 +61,7 @@ export function NavMain({
           >
             <SidebarMenuItem className="">
               <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={item.title} onClick={() => { (item.url && item.isActive) && router.push(item.url) }}>
+                <SidebarMenuButton className={activeLinkStyle(item.url)} tooltip={item.title} onClick={() => { (item.url && item.isActive) && router.push(item.url) }}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                   {item.items && <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />}
@@ -62,7 +70,7 @@ export function NavMain({
               {item.items && <CollapsibleContent className="">
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
+                    <SidebarMenuSubItem key={subItem.title} className={activeLinkStyle(subItem.url)}>
                       <SidebarMenuSubButton asChild>
                         <a href={subItem.url}>
                           <span>{subItem.title}</span>

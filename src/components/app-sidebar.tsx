@@ -137,7 +137,7 @@ const data = {
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/private/settings",
       icon: Settings,
       items: [
         {
