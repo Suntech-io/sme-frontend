@@ -6,14 +6,14 @@ import CustomLinkTabs from './CustomLinkTabs'
 import { ILinkTab } from './CustomLinkTabs'
 
 type IServicesTitle = 'All Services' | 'Categories' | 'Analytics'
-type IServicesLink = '/private/services/list' | '/private/services/categories' | '/private/services/analytics'
+type IServicesLink = '/private/catalog/services/list' | '/private/catalog/services/categories' | '/private/catalog/services/analytics'
 
 
 
 const settingsPages: ILinkTab<{ title: IServicesTitle, link: IServicesLink }>[] = [
-    { title: 'All Services', link: '/private/services/list' },
-    { title: 'Categories', link: '/private/services/categories' },
-    { title: 'Analytics', link: '/private/services/analytics' },
+    { title: 'All Services', link: '/private/catalog/services/list' },
+    { title: 'Categories', link: '/private/catalog/services/categories' },
+    { title: 'Analytics', link: '/private/catalog/services/analytics' },
 ]
 
 const ServicesTabs = () => {

@@ -72,20 +72,20 @@ const data = {
     },
     {
       title: "Products/Services Hub",
-      url: "#",
+      url: "/catalog",
       icon: HandPlatter,
       items: [
         {
           title: "Product Management",
-          url: "/private/products/list",
+          url: "/private/catalog/products/list",
         },
         {
           title: "Service Management",
-          url: "/private/services/list",
+          url: "/private/catalog/services/list",
         },
         {
           title: "Stock Management",
-          url: "/private/stocks/list",
+          url: "/private/catalog/stocks/list",
         },
       ],
     },
