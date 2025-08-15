@@ -392,6 +392,7 @@ import { RadioGroup } from "@/components/ui/radio-group";
 import { RadioGroupItem } from "@radix-ui/react-radio-group";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import React from "react";
 
 interface SelectFormFieldProps {
   form: any;
@@ -650,13 +651,13 @@ export const SwitchFormField = ({
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={className}>
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Switch
               checked={field.value}
               onCheckedChange={field.onChange}
-              className={className}
+              
               disabled={disabled}
             />
           </FormControl>
@@ -670,7 +671,7 @@ export const SwitchFormField = ({
 
 
 
-// Switch Form Field -----------------------------------------------------------------
+// Combobox Form Field -----------------------------------------------------------------
 export const ComboboxFormField = ({
   form,
   label,
@@ -751,3 +752,105 @@ export const ComboboxFormField = ({
     />
   )
 }
+
+
+
+
+
+
+
+
+
+
+// Custom combobox form field component where the options are components
+export const CustomComboboxFormField = ({
+  form,
+  label,
+  placeholder,
+  description,
+  name,
+  options,
+  disabled = false,
+  className,
+  inputProps = {},
+}: InputFormFieldProps & { options: { value: any; label: string, customCmp: React.ComponentType<any> | React.ReactElement }[] }) => {
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem className="flex flex-col">
+          <FormLabel>{label}</FormLabel>
+          <Popover>
+            <PopoverTrigger asChild>
+              <FormControl>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  className={cn(
+                    "justify-between",
+                    !field.value && "text-muted-foreground"
+                  )}
+                >
+                  {field.value
+                    ? options.find(
+                      (language) => language.value === field.value
+                    )?.label
+                    : placeholder}
+                  <ChevronsUpDown className="opacity-50" />
+                </Button>
+              </FormControl>
+            </PopoverTrigger>
+            <PopoverContent className="p-0" align="end">
+              <Command>
+                <CommandInput
+                  placeholder="Search framework..."
+                  className="h-9"
+                />
+                <CommandList>
+                  <CommandEmpty>No Results found.</CommandEmpty>
+                  <CommandGroup>
+                    {options.map((option) => (
+                      <CommandItem
+                        value={option.label}
+                        key={option.value}
+                        onSelect={() => {
+                          form.setValue(name, option.value)
+                        }}
+                      >
+                        {option.customCmp &&
+                                (typeof option.customCmp === "function"
+                                  ? React.createElement(option.customCmp)
+                                  : option.customCmp)}
+                        <Check
+                          className={cn(
+                            "ml-auto",
+                            option.value === field.value
+                              ? "opacity-100"
+                              : "opacity-0"
+                          )}
+                        />
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </PopoverContent>
+          </Popover>
+          <FormDescription>
+            {description}
+          </FormDescription>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  )
+}
+
+
+
+
+
+
+
+

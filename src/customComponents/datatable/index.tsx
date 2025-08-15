@@ -130,7 +130,6 @@ export default function DataTable<TData, TValue>({
           ? React.createElement(tableInformationContent)
           : tableInformationContent)}
 
-
       {showHeader && (
         <div className="flex  items-center justify-between mb-5 max-w-full">
           {/* search input */}
@@ -168,7 +167,7 @@ export default function DataTable<TData, TValue>({
                 {addButtonLabel}
               </Button>
             )}
-           {!hideColumnVisibility && <DropdownMenu>
+            {!hideColumnVisibility && <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
