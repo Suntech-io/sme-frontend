@@ -5,13 +5,13 @@ import StocksTabs from '@/customComponents/StocksTabs'
 import { usePathname } from 'next/navigation'
 import React, { ReactNode, useEffect } from 'react'
 
-const noheadersPages = ['/private/catalog/stocks/add']
+const noheadersPages = ['/private/catalog/stocks/add','/private/catalog/stocks/details/']
 
 const StocksLayout = ({ children }: { children: ReactNode }) => {
-  
+
   const pathName = usePathname()
   // if the pathname is in the no headers pages, then we return null
-  if (noheadersPages.includes(pathName)) {
+  if (noheadersPages.some(item => pathName.startsWith(item))) {
     return <>{children}</>
   }
 

@@ -51,7 +51,7 @@ const page = () => {
   const stockActions: ITableActionsComponentProps =
   {
     title: 'Stock Actions', actions: [
-      { component: 'View Stock', onClick: (data) => router.push(`/private/catalog/stocks/${data.id}`), icon: 'carbon:data-view' },
+      { component: 'View Stock', onClick: (data) => router.push(`/private/catalog/stocks/details/${data.id}`), icon: 'carbon:data-view' },
       { component: 'Increase Stock', onClick: () => setshowStockInModal(true), icon: 'carbon:task-add' },
       { component: 'Decrease Stock', onClick: () => setshowStockOut(true), icon: 'carbon:task-remove' },
     ]
