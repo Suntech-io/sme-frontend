@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/utils';
 import React from 'react'
 
 
@@ -12,23 +13,22 @@ interface IStockOverviewStatsCard {
         cardValueClass?: string;
         cardSubtitleCalss?: string;
     },
-    title:string;
-    value:string|number;
-    subValue:string|number
-    
+    title: 'Total Quantity' | 'Total Value' | 'Active Batches' | 'Category';
+    value: string | number;
+    subValue: string | number
+    progress?: number
 }
 
-const StockOverviewStatsCard = () => {
+const StockOverviewStatsCard = ({ subValue, title, value, progress, classes }: IStockOverviewStatsCard) => {
     return (
-        <Card className=''>
-            <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-slate-600">Total Quantity</CardTitle>
+        <Card className={cn('')}>
+            <CardHeader className={cn("pb-1")}>
+                <CardTitle className={cn("text-sm font-medium text-slate-600")}>{title}</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="text-2xl font-bold text-slate-900">{'stock.totalQuantity'}</div>
-                <div className="text-xs text-slate-500">Stock Limit: {'stock.stockLimit'}</div>
-                {/* <Progress value={50 || '(stock.totalQuantity / (stock.stockLimit * 2)) * 100'} className="mt-2 h-2" /> */}
-                <Progress value={50} className="mt-2 h-2" />
+                <div className={cn("text-2xl font-bold text-slate-900")}> <span>{title == 'Total Value' && '$'}</span> {value}</div>
+                <div className={cn("text-sm text-slate-500")}><span>{title == 'Total Quantity' ? 'Stock Limit' : title == 'Total Value' ? 'Avg' : title == 'Active Batches' ? 'Suppliers' : 'Unit Sizes'}:</span> {subValue}</div>
+                {progress && <Progress value={progress as number} className="mt-2 h-2" />}
             </CardContent>
         </Card>
     )
