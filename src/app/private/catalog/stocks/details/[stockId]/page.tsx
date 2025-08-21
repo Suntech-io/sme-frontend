@@ -12,8 +12,8 @@ import UnitsNPackagesPage from './partials/UnitsNPackagesPage';
 import MovementsPage from './partials/MovementsPage';
 import SuppliersPage from './partials/SuppliersPage';
 
-type TPages = 'Overview' | 'Batches' | 'Units' | 'Units & Packages' | 'Movements' | 'Suppliers'
-const pageTabs: TPages[] = ['Overview', 'Batches', 'Units', 'Units & Packages', 'Movements', 'Suppliers']
+type TPages = 'Overview' | 'Batches' |  'Units & Packages' | 'Movements' | 'Suppliers'
+const pageTabs: TPages[] = ['Overview', 'Batches', 'Units & Packages', 'Movements', 'Suppliers']
 
 
 const page = () => {
