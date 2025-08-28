@@ -7,9 +7,9 @@ import React from 'react'
 
 const OverViewPage = () => {
     return (
-        <div className='bg-white p-8 rounded-xl border grid grid-cols-2 gap-8'>
+        <div className='bg-gray-100 p-8 rounded-xl border grid grid-cols-2 gap-8'>
             {/* stock information */}
-            <div className="stockInformation space-y-8 hover:shadow-sm border p-4 rounded-lg">
+            <div className="stockInformation bg-white shadow space-y-8 hover:shadow-md hover:scale-[100.2%] p-4 rounded-lg">
                 {/* heading */}
                 <div className=''>
                     <p className='text-lg font-semibold'>Stock Information</p>
@@ -48,7 +48,7 @@ const OverViewPage = () => {
             </div>
 
             {/* recent Activity */}
-            <div className="recentActivity hover:shadow-sm border p-4 space-y-8 rounded-lg">
+            <div className="recentActivity bg-white shadow space-y-8 hover:shadow-md hover:scale-[100.2%] p-4 rounded-lg">
                 {/* heading */}
                 <div className=''>
                     <p className='text-lg font-semibold'>Recent Activity</p>

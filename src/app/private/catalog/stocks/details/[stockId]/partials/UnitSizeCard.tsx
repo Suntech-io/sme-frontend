@@ -9,7 +9,7 @@ const UnitSizeCard = () => {
             {/* header */}
             <div className="header flex items-center justify-between">
                 {/* title */}
-                <p className="unitTitle font-thin text-gray-500 text-base">Small</p>
+                <p className="unitTitle font-thin text-gray-500 text-lg">Small</p>
                 {/* actions */}
                 <div className="actions flex items-center space-x-3 ">
                     {/* edit */}

@@ -3,6 +3,7 @@
 import ButtonLoading from '@/customComponents/Button';
 import React from 'react'
 import UnitSizeCard from './UnitSizeCard';
+import PackageCard from './PackageCard';
 
 const UnitsNPackagesPage = () => {
   return (
@@ -45,16 +46,13 @@ const UnitsNPackagesPage = () => {
 
           {/* right side */}
           <div className="rightSide">
-            <ButtonLoading title='Add Unit Size' leftIcon='material-symbols:add-rounded' />
+            <ButtonLoading title='Add Package' leftIcon='material-symbols:add-rounded' />
           </div>
         </div>
 
         {/* unit size cards */}
         <div className="unitSizeCards mt-8 grid grid-cols-4 gap-4">
-          <UnitSizeCard />
-          <UnitSizeCard />
-          <UnitSizeCard />
-          <UnitSizeCard />
+          <PackageCard />
         </div>
       </div>
     </div>
