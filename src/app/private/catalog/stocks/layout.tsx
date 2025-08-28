@@ -5,7 +5,7 @@ import StocksTabs from '@/customComponents/StocksTabs'
 import { usePathname } from 'next/navigation'
 import React, { ReactNode, useEffect } from 'react'
 
-const noheadersPages = ['/private/catalog/stocks/add','/private/catalog/stocks/details/']
+const noheadersPages = ['/private/catalog/stocks/add', '/private/catalog/stocks/details/']
 
 const StocksLayout = ({ children }: { children: ReactNode }) => {
 
@@ -21,7 +21,7 @@ const StocksLayout = ({ children }: { children: ReactNode }) => {
     <div className="layoutContainer p-4 h-full flex flex-col mb-10">
 
       {/* shared layout headers */}
-      <div className="sharedLayout">
+      <div className="sharedLayout h-fit">
         <div className="headerText">
           <p className="subHeader text-[24px] text-darkGrey">
             Stocks Management
@@ -30,14 +30,16 @@ const StocksLayout = ({ children }: { children: ReactNode }) => {
           <p className='subText text-base mt-2 text-darkGrey'>Manage all Stocks here.</p>
         </div>
 
-        {/* tabs */}
-        <div className="tabs my-6 h-[36px] sticky top-0 z-10 bg-[#f8f8fb]">
-          <StocksTabs />
-        </div>
       </div>
 
+      {/* tabs */}
+      <div className="tabs my-6 h-[36px] sticky top-0 z-10 bg-[#f8f8fb]">
+        <StocksTabs />
+      </div>
+
+
       {/* portals or main content */}
-      <main className="w-full h-full">{children}</main>
+      <main className="w-full h-full flex flex-col">{children}</main>
 
     </div>
   )

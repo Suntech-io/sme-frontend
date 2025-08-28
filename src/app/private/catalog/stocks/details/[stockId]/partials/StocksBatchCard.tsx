@@ -13,7 +13,7 @@ import ButtonLoading from '@/customComponents/Button';
 
 const StocksBatchCard = ({ batchName, condition, costPrice, expiryDate, quantity, supplierName, totalValue }: IStocksBatchCardProps) => {
   return (
-    <div className='StockBatchCard border hover:scale-[100.2%] rounded-lg p-4 shadow-sm hover:shadow-md transition-all'>
+    <div className='StockBatchCard  bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all'>
       {/* header */}
       <div className="headerPart flex items-center justify-between">
         {/* left side */}

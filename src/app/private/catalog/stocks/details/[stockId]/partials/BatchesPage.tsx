@@ -15,7 +15,7 @@ const stockBatches: IStocksBatchCardProps[] = [
 
 const BatchesPage = () => {
   return (
-    <div className='StockBatchesPage bg-white p-8 rounded-xl border'>
+    <div className='StockBatchesPage bg-gray-100 p-8 rounded-xl border'>
       {/* header part */}
       {/* heading */}
       <div className='flex items-center justify-between gap-10'>

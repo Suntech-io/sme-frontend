@@ -35,7 +35,7 @@ const page = () => {
   }
 
   return (
-    <div>
+    <div className='h-full'>
       {/* page header */}
       <div className="topBar border-b bg-white z-20 px-8 py-6 sticky top-0">
         <div className="barContents mx-auto maximum-width flex items-center justify-between w-full">
@@ -67,7 +67,7 @@ const page = () => {
       </div>
 
       {/* page content */}
-      <div className="stockDetailsPageContent mx auto maximum-width py-8">
+      <div className="stockDetailsPageContent flex flex-col h-full mx auto maximum-width py-8">
         {/* stats cards */}
         <div className="statsCards grid grid-cols-4 gap-4">
           <StockOverviewStatsCard title='Total Quantity' value={245} subValue={50} progress={90} />
@@ -77,7 +77,7 @@ const page = () => {
         </div>
 
         {/* tabs */}
-        <div className="customNavTabs my-8">
+        <div className="customNavTabs my-8 h-[36px] sticky top-[109px] z-20 bg-[#f8f8fb] border-t border-t-transparent">
           <CustomNavTabs tabs={pageTabs as string[]} clicked={(e: string) => handleTabClicked(e as TPages)} />
         </div>
 
