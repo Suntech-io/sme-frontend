@@ -60,7 +60,7 @@ const StockDistributionChart = () => {
             </div>
 
             {/* react chart portion */}
-            <div className="chart mt-6 h-[230px]">
+            <div className="chart mt-6 h-[230px] flex items-center justify-between">
                 <Doughnut data={stockData} options={chartOptions} />
             </div>
         </div>

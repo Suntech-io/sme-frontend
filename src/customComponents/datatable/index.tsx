@@ -34,10 +34,12 @@ import TableRowActions, { ITableRowActionList } from "./tableRowActions";
 import { Input } from "@/components/ui/input";
 import IconifyIcon from "../IconifyIcon";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  tableContainerClass?: string;
   showAddButton?: boolean;
   addButtonLabel?: string;
   addButtonFunction?: () => void;
@@ -68,6 +70,7 @@ interface DataTableProps<TData, TValue> {
 export default function DataTable<TData, TValue>({
   columns,
   data,
+  tableContainerClass,
   showAddButton,
   addButtonLabel = "",
   addButtonFunction,
@@ -121,7 +124,7 @@ export default function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-xl border p-4 bg-white max-w-full overflow-x-auto">
+    <div className={cn("rounded-xl border p-4 bg-white max-w-full overflow-x-auto",tableContainerClass)}>
 
       {/* table content and information */}
 
