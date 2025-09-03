@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/sidebar"
 
 import { usePathname, useRouter } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 export function NavMain({
   items,
@@ -28,6 +29,7 @@ export function NavMain({
   items: {
     title: string
     url: string
+    baseUrl?: string
     icon?: LucideIcon
     isActive?: boolean
     items?: {
@@ -42,10 +44,12 @@ export function NavMain({
   const pathName = usePathname()
 
   const activeLinkStyle = (route: string) => {
-    if (route === pathName) return 'bg-primary/5 text-primary'
+    if (route === pathName) return 'bg-primary/5 !text-primary'
 
     if (pathName.includes(route)) return 'text-primary'
   }
+
+
 
   return (
     <SidebarGroup>
@@ -60,7 +64,7 @@ export function NavMain({
           >
             <SidebarMenuItem className="">
               <CollapsibleTrigger asChild>
-                <SidebarMenuButton className={activeLinkStyle(item.url)} tooltip={item.title} onClick={() => { (item.url && item.isActive) && router.push(item.url) }}>
+                <SidebarMenuButton className={cn(activeLinkStyle(item.url), pathName.includes(item.baseUrl!) && 'text-primary')} tooltip={item.title} onClick={() => { (item.url && item.isActive) && router.push(item.url) }}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                   {item.items && <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />}

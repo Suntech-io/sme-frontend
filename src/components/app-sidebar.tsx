@@ -55,6 +55,7 @@ const data = {
     {
       title: "Dashboard",
       url: "/private/dashboard",
+      baseUrl: "/private/dashboard",
       icon: SquareTerminal,
       isActive: true,
       // items: [
@@ -75,6 +76,7 @@ const data = {
     {
       title: "Products/Services Hub",
       url: "/private/catalog/products/list",
+      baseUrl: "/private/catalog",
       icon: HandPlatter,
       isActive: false,
       items: [
@@ -143,6 +145,7 @@ const data = {
     {
       title: "Settings",
       url: "/private/settings/user-profile",
+      baseUrl: "/private/settings",
       icon: Settings,
       isActive: false,
       items: [
