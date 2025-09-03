@@ -20,10 +20,12 @@ import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
+  SidebarContext,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { useEffect, useState } from "react"
 
 // This is sample data.
 const data = {
@@ -72,8 +74,9 @@ const data = {
     },
     {
       title: "Products/Services Hub",
-      url: "/catalog",
+      url: "/private/catalog/products/list",
       icon: HandPlatter,
+      isActive: false,
       items: [
         {
           title: "Product Management",
@@ -85,7 +88,7 @@ const data = {
         },
         {
           title: "Stock Management",
-          url: "/private/catalog/stocks/list",
+          url: "/private/catalog/stocks/overview",
         },
       ],
     },
@@ -93,6 +96,7 @@ const data = {
       title: "Market Place",
       url: "#",
       icon: Store,
+      isActive: false,
       items: [
         {
           title: "Introduction",
@@ -116,6 +120,7 @@ const data = {
       title: "Marketing",
       url: "#",
       icon: Megaphone,
+      isActive: false,
       items: [
         {
           title: "General",
@@ -137,8 +142,9 @@ const data = {
     },
     {
       title: "Settings",
-      url: "/private/settings",
+      url: "/private/settings/user-profile",
       icon: Settings,
+      isActive: false,
       items: [
         {
           title: "Profile Settings",
@@ -165,17 +171,43 @@ const data = {
 
   ],
 
-
 }
 
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [sidebarLinks, setsidebarLinks] = useState(data.navMain)
+
+  const sideBarContext = React.useContext(SidebarContext)
+
+  useEffect(() => {
+    let updatedLinks;
+    if (sideBarContext?.state === 'collapsed') {
+      updatedLinks = sidebarLinks.map(link => ({
+        ...link,
+        isActive: true
+      }))
+      setsidebarLinks(updatedLinks)
+    } else {
+      updatedLinks = sidebarLinks.map(link => ({
+        ...link,
+        isActive: link.items?.length ? false : true // Set the default active link when expanded
+      }))
+      setsidebarLinks(updatedLinks)
+    }
+
+    return () => {
+
+    }
+  }, [sideBarContext?.state])
+
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={sidebarLinks} />
         {/* <NavMain items={data.Markets} /> */}
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
