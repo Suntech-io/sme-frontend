@@ -35,6 +35,7 @@ export function NavMain({
     items?: {
       title: string
       url: string
+      baseUrl?: string
     }[]
   }[]
 }) {
@@ -47,6 +48,10 @@ export function NavMain({
     if (route === pathName) return 'bg-primary/5 !text-primary'
 
     if (pathName.includes(route)) return 'text-primary'
+  }
+
+  const subLinkStyle = (route: string) => {
+    if (pathName.includes(route)) return 'bg-primary/5 !text-primary'
   }
 
 
@@ -73,7 +78,7 @@ export function NavMain({
               {item.items && <CollapsibleContent className="">
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title} className={activeLinkStyle(subItem.url)}>
+                    <SidebarMenuSubItem key={subItem.title} className={subLinkStyle(subItem.baseUrl as string)}>
                       <SidebarMenuSubButton asChild>
                         <a href={subItem.url}>
                           <span>{subItem.title}</span>

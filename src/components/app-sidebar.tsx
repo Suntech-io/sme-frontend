@@ -83,14 +83,17 @@ const data = {
         {
           title: "Product Management",
           url: "/private/catalog/products/list",
+          baseUrl: "/private/catalog/products",
         },
         {
           title: "Service Management",
           url: "/private/catalog/services/list",
+          baseUrl: "/private/catalog/services",
         },
         {
           title: "Stock Management",
           url: "/private/catalog/stocks/overview",
+          baseUrl: "/private/catalog/stocks",
         },
       ],
     },
@@ -152,22 +155,27 @@ const data = {
         {
           title: "Profile Settings",
           url: "/private/settings/user-profile",
+          baseUrl: "/private/settings/user-profile",
         },
         {
           title: "Business Settings",
           url: "/private/settings/business-settings",
+          baseUrl: "/private/settings/business-settings",
         },
         {
           title: "Store Configuration",
           url: "/private/settings/store-configuration",
+          baseUrl: "/private/settings/store-configuration",
         },
         {
           title: "User Management",
           url: "/private/settings/user-management",
+          baseUrl: "/private/settings/user-management",
         },
         {
           title: "Notifications",
           url: "/private/settings/notifications",
+          baseUrl: "/private/settings/notifications",
         },
       ],
     },
