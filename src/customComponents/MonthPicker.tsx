@@ -17,12 +17,6 @@ import {
 export function MonthPicker() {
     const [date, setDate] = React.useState<Date>()
 
-    useEffect(() => {
-        console.log('date', date)
-
-        return () => { }
-    }, [date])
-
 
     return (
         <Popover>
