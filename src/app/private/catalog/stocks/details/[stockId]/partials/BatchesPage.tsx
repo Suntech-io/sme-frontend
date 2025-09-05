@@ -1,9 +1,10 @@
 'use client';
 
 import ButtonLoading from '@/customComponents/Button';
-import React from 'react'
+import React, { useState } from 'react'
 import StocksBatchCard from './StocksBatchCard';
 import { IStocksBatchCardProps } from './StockBatchInterfaces';
+import AddBatchSlider from './AddBatchSlider';
 
 const stockBatches: IStocksBatchCardProps[] = [
   { batchName: 'Batch B001', condition: 'Good', costPrice: 45.5, expiryDate: '24 Dec 2028', quantity: 120, supplierName: 'Berma Akoto Ventures', totalValue: 5485.90 },
@@ -14,6 +15,8 @@ const stockBatches: IStocksBatchCardProps[] = [
 ]
 
 const BatchesPage = () => {
+  const [showAddBadge, setshowAddBadge] = useState<boolean>(false)
+
   return (
     <div className='StockBatchesPage bg-gray-100 p-8 rounded-xl border'>
       {/* header part */}
@@ -26,7 +29,7 @@ const BatchesPage = () => {
 
         {/* right side */}
         <div className="rightSide">
-          <ButtonLoading title='Add New Batch' leftIcon='material-symbols:add-rounded' />
+          <ButtonLoading title='Add New Batch' leftIcon='material-symbols:add-rounded' onClick={() => setshowAddBadge(true)} />
         </div>
       </div>
 
@@ -35,7 +38,7 @@ const BatchesPage = () => {
       <div className="my-8 batchCards space-y-8">
         {stockBatches.map((batch, index) => (
           <div className="" key={index}>
-            <StocksBatchCard 
+            <StocksBatchCard
               batchName={batch.batchName}
               condition={batch.condition}
               costPrice={batch.costPrice}
@@ -43,12 +46,14 @@ const BatchesPage = () => {
               quantity={batch.quantity}
               supplierName={batch.supplierName}
               totalValue={batch.totalValue}
-            />  
-            </div>
+            />
+          </div>
         ))}
-
-        {/* <StocksBatchCard /> */}
       </div>
+
+
+      {/* MODALS AND SIDE DRAWERS */}
+      <AddBatchSlider open={showAddBadge} onOpenChange={setshowAddBadge} />
     </div>
   )
 }

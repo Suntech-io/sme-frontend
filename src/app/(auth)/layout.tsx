@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Geist, Geist_Mono } from "next/font/google";
-import "@/app/globals.css";
+import "@/globals.css";
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import { cn } from '@/lib/utils';
