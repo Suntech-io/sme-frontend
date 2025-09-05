@@ -96,7 +96,7 @@ const ProgressBarStepperCard = forwardRef<ProgressBarStepperRef, IProgressBarSte
 
 
     return (
-      <div className="w-full mx-auto h-full overflow-hidden">
+      <div className="w-full mx-auto h-full overflow-hidden max-h-full">
         <Card className={cn("h-full flex flex-col py-1", cardClass)}>
           <CardContent className={cn("p-4 flex flex-col justify-between h-full gap-4 overflow-hidden", cardContentClass)}>
             {/* Stepper Header */}
