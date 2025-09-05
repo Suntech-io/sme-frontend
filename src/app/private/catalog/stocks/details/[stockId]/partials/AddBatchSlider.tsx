@@ -158,7 +158,7 @@ export default function AddBadgeSlider({ open, onOpenChange }: AddPaymentMethodP
             title: "Payment Information",
             // description: "Configure your account preferences",
             content: (
-                <BatchPaymentDetails />
+                <BatchPaymentDetails form={newBatchPaymentDataForm} onSubmit={() => { }} />
             ),
         },
     ]
