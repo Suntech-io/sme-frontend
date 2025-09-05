@@ -14,9 +14,11 @@ import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
-import ProgressBarStepperCard from "@/customComponents/ProgressBarStepper";
+import ProgressBarStepperCard, { ProgressBarStepperRef } from "@/customComponents/ProgressBarStepper";
 import BatchDetails from "./batchSliderComponents/BatchDetails";
 import BatchPaymentDetails from "./batchSliderComponents/BatchPaymentDetails";
+import { useEffect, useRef, useState } from "react";
+import ButtonLoading from "@/customComponents/Button";
 
 
 type AddPaymentMethodProps = {
@@ -84,6 +86,9 @@ const newBatchPaymentDataSchema = z.object({
 })
 
 export default function AddBadgeSlider({ open, onOpenChange }: AddPaymentMethodProps) {
+    const stepperRef = useRef<ProgressBarStepperRef>(null)
+    const [currentPage, setcurrentPage] = useState<number>(1)
+
     const newBatchform = useForm<z.infer<typeof newBatchSchema>>({
         resolver: zodResolver(newBatchSchema),
         // defaultValues: {
@@ -109,7 +114,7 @@ export default function AddBadgeSlider({ open, onOpenChange }: AddPaymentMethodP
             title: "Batch Information",
             stepHeaderStyle: "text-blue-600 text-base",
             // description: "Enter your basic details",
-            
+
             content: (
                 <BatchDetails />
             ),
@@ -124,26 +129,28 @@ export default function AddBadgeSlider({ open, onOpenChange }: AddPaymentMethodP
         },
     ]
 
-    const handleNextPage = async (val: any) => {
-        console.log('------->', val)
+
+
+    const handleNextPage = async () => {
+        console.log('stepperRef current page', stepperRef.current?.currentStep)
         // Logic to handle next page
         // const isValid = await newBatchform.trigger()
         // handleServiceFormSubmit()
-        val()
+        stepperRef.current?.handleNext()
         // if (isValid) {
         //     val()
         // }
     }
 
-    const handlePrevPage = (val: any) => {
+    const handlePrevPage = () => {
         // Logic to handle next page
-        console.log('prev page clicked', val);
-        val()
+        stepperRef.current?.handlePrevious()
     }
+
 
     return (
         <Sheet modal={true} open={open} onOpenChange={onOpenChange} >
-            <SheetContent>
+            <SheetContent >
                 <SheetHeader>
                     <SheetTitle>Add Batch</SheetTitle>
                     <SheetDescription>
@@ -153,14 +160,21 @@ export default function AddBadgeSlider({ open, onOpenChange }: AddPaymentMethodP
 
                 {/* main form content */}
                 <div className="mainFormContent h-full p-4">
-                    <ProgressBarStepperCard steps={steps} mainContentClass="max-h-[85%]" progressBarClass="mb-1" rightBtnClicked={handleNextPage} leftBtnClicked={handlePrevPage} hideControlButtons={true} />
+                    <ProgressBarStepperCard getCurrentStep={setcurrentPage} ref={stepperRef} steps={steps} mainContentClass="max-h-[85%]" progressBarClass="mb-1" hideControlButtons={true} />
                 </div>
 
                 <SheetFooter>
-                    <Button type="submit" onClick={handleNextPage}>Next</Button>
-                    <SheetClose asChild>
+                    <div className="affirmative">
+                        {currentPage == 1 ? <Button type="submit" onClick={handleNextPage} className="w-full">Next</Button>
+                            : <ButtonLoading type="submit" onClick={handleNextPage} className="w-full" title="Submit" />
+                        }
+                    </div>
+                    {currentPage == 1 ? <SheetClose asChild className="transition-all">
                         <Button variant="outline">Cancel</Button>
                     </SheetClose>
+                        :
+                        <Button variant="outline" onClick={handlePrevPage} className="border border-primary text-primary">Previous</Button>
+                    }
                 </SheetFooter>
             </SheetContent>
         </Sheet>
