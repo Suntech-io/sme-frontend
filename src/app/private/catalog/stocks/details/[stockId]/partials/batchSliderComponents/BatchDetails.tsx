@@ -4,6 +4,7 @@ import { Form } from '@/components/ui/form';
 import AppDivider from '@/customComponents/AppDivider';
 import { InputFormField, SelectFormField, TextAreaFormField } from '@/customComponents/FormFields';
 import IconifyIcon from '@/customComponents/IconifyIcon';
+import { v4 as uuidv4 } from 'uuid';
 import React from 'react'
 
 const BatchDetails = ({ form, stocksFields, appendStock, removeStock, onSubmit }: {
@@ -90,7 +91,4 @@ const BatchDetails = ({ form, stocksFields, appendStock, removeStock, onSubmit }
 }
 
 export default BatchDetails
-function uuidv4() {
-  throw new Error('Function not implemented.');
-}
 
