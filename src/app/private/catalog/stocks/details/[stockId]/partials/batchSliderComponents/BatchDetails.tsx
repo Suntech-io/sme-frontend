@@ -81,9 +81,9 @@ const BatchDetails = ({ form, stocksFields, appendStock, removeStock, onSubmit }
 
 
 
-          <AppDivider text="Stock Notes" position='center' className='my-4' />
+          <AppDivider text="Batch Notes" position='center' className='my-4' />
           {/* Notes on the stock */}
-          <TextAreaFormField form={form} name="note" label="Stock Notes" placeholder="Enter more Information about the stock..." />
+          <TextAreaFormField form={form} name="batchNotes" label="Batch Notes" placeholder="Enter more Information about the batch..." />
         </form>
       </Form>
     </div>

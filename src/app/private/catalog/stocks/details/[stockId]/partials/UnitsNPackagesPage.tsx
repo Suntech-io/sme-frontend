@@ -1,11 +1,15 @@
 'use client';
 
 import ButtonLoading from '@/customComponents/Button';
-import React from 'react'
+import React, { useState } from 'react'
 import UnitSizeCard from './UnitSizeCard';
 import PackageCard from './PackageCard';
+import AddStockUnitSlider from './AddStockUnitSlider';
+import AddStockPackageSlider from './AddStockPackageSlider';
 
 const UnitsNPackagesPage = () => {
+  const [showAddStockUnit, setshowAddStockUnit] = useState<boolean>(false)
+  const [showAddPackage, setshowAddPackage] = useState<boolean>(false)
   return (
     <div>
       {/* Unit Sizes */}
@@ -20,7 +24,7 @@ const UnitsNPackagesPage = () => {
 
           {/* right side */}
           <div className="rightSide">
-            <ButtonLoading title='Add Unit Size' leftIcon='material-symbols:add-rounded' />
+            <ButtonLoading title='Add Unit Size' leftIcon='material-symbols:add-rounded' onClick={() => setshowAddStockUnit(true)} />
           </div>
         </div>
 
@@ -46,7 +50,7 @@ const UnitsNPackagesPage = () => {
 
           {/* right side */}
           <div className="rightSide">
-            <ButtonLoading title='Add Package' leftIcon='material-symbols:add-rounded' />
+            <ButtonLoading title='Add Package' leftIcon='material-symbols:add-rounded' onClick={() => setshowAddPackage(true)} />
           </div>
         </div>
 
@@ -55,6 +59,15 @@ const UnitsNPackagesPage = () => {
           <PackageCard />
         </div>
       </div>
+
+
+
+      {/* MODALS */}
+      {/* add new unit card */}
+      <AddStockUnitSlider open={showAddStockUnit} onOpenChange={setshowAddStockUnit} />
+
+      {/* add new package card */}
+      <AddStockPackageSlider open={showAddPackage} onOpenChange={setshowAddPackage} />
     </div>
   )
 }

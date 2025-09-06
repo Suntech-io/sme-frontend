@@ -21,7 +21,7 @@ import { useEffect, useRef, useState } from "react";
 import ButtonLoading from "@/customComponents/Button";
 import { v4 as uuidv4 } from 'uuid';
 
-type AddPaymentMethodProps = {
+type AddBatchSliderProps = {
     open: boolean;
     onOpenChange: (open: boolean) => void;
 };
@@ -86,7 +86,7 @@ const newBatchPaymentDataSchema = z.object({
 })
 
 // COMPONENT CODE--------------------------------------------------------------------
-export default function AddBadgeSlider({ open, onOpenChange }: AddPaymentMethodProps) {
+export default function AddBadgeSlider({ open, onOpenChange }: AddBatchSliderProps) {
     const stepperRef = useRef<ProgressBarStepperRef>(null)
     const [currentPage, setcurrentPage] = useState<number>(1)
 
