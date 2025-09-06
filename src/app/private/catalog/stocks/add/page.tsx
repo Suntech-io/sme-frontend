@@ -25,6 +25,7 @@ const addNewStockSchema = z.object({
   limit: z.string().min(1, 'Limit is required'),
   batchNumber: z.string().optional(),
   measurementCategory: z.string().min(1, 'Category is required'),
+  stockNotes: z.string(),
 
   unitSizes: z.array(z.object({
     sizeName: z.string().min(1, 'Size name is required'),
@@ -46,6 +47,8 @@ const addNewStockSchema = z.object({
     quantity: z.string().min(1, 'Quantity is required'),
     id: z.string()
   })),
+
+  batchNotes:z.string(),
 
   supplierName: z.string().min(1, 'Supplier Name is required'),
   supplierContact: z.string().min(1, 'Supplier contact is required'),
@@ -94,7 +97,7 @@ const addNewStockSchema = z.object({
     payerContact: z.string()
   }),
 
-  description: z.string()
+  paymentDescription: z.string()
 
 })
   .refine(
@@ -507,6 +510,9 @@ const page = () => {
                   <InputFormField form={form} name="limit" label="Stock Limit" placeholder="" type='number' />
                   {/* batchNumber */}
                   <InputFormField form={form} name="batchNumber" label="Batch Number" placeholder="Enter batch number..." />
+                  <AppDivider text="Stock Notes" position='center' className='my-4' />
+                  {/* Notes on the stock */}
+                  <TextAreaFormField form={form} name="stockNotes" label="Stock Notes" placeholder="Enter more Information about the stock..." />
 
 
 
@@ -605,8 +611,8 @@ const page = () => {
 
 
 
-                  {/* ---------------------------------------------------Quantity and cost information---------------------------------------------------------------------------------------------------------------------- */}
-                  <AppDivider text='Stock Quantity and Costs' position='center' className='my-4' />
+                  {/* ---------------------------------------------------Quantity and cost information for Batch---------------------------------------------------------------------------------------------------------------------- */}
+                  <AppDivider text='Batch Quantity and Costs' position='center' className='my-4' />
                   {/* some explanatory info on the packages */}
                   <InformationCard title='Stock Quantity Legend' description={StockQuantityInformation} styling={{ mainContainer: 'bg-blue-50' }} />
 
@@ -643,6 +649,10 @@ const page = () => {
                     </div>
                   </div>
 
+                  <AppDivider text="Batch Notes" position='center' className='my-4' />
+                  {/* Notes on the stock */}
+                  <TextAreaFormField form={form} name="batchNotes" label="Batch Notes" placeholder="Enter more Information about the Batch..." />
+
 
                   {/* supplier's information */}
                   {/* ---------------------------------------------------Supplier information---------------------------------------------------------------------------------------------------------------------- */}
@@ -654,11 +664,6 @@ const page = () => {
                     <InputFormField form={form} name="supplierContact" label="Supplier Contact" placeholder="Enter Stock name..." />
                   </div>
 
-
-
-                  <AppDivider text="Stock Notes" position='center' className='my-4' />
-                  {/* Notes on the stock */}
-                  <TextAreaFormField form={form} name="note" label="Stock Notes" placeholder="Enter more Information about the stock..." />
                 </div>
               </section>
 
@@ -735,7 +740,7 @@ const page = () => {
 
                   <AppDivider text='Payment Description/Notes' position='center' className='my-4' />
                   {/* description */}
-                  <TextAreaFormField form={form} name="description" label="Description" placeholder="Enter more description..." />
+                  <TextAreaFormField form={form} name="paymentDescription" label="Payment Description" placeholder="Enter more description..." />
                 </div>
               </section>
 
